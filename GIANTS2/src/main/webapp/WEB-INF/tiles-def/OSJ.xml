@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 아래 설정을 상황에 맞게 수정해서 사용하세요 -->
+	
+	<definition name="foodList" extends="main">
+		<put-attribute name="title" value="식품 - 매장리스트"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/foodList.jsp"/>
+	</definition>
+	
+	<!-- 매장상세(메뉴) -->
+	<definition name="foodCompDetailMenu" extends="main">
+		<put-attribute name="title" value="식품 - 매장상세정보 - 메뉴"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/foodCompDetailMenu.jsp"/>
+	</definition>
+	
+	<!-- 매장상세(리뷰) -->
+	<definition name="foodCompDetailReview" extends="main">
+		<put-attribute name="title" value="식품 - 매장상세정보 - 리뷰"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/foodCompDetailReview.jsp"/>
+	</definition>
+	
+	<!-- 리뷰 상세보기 -->
+	<definition name="foodReviewDetail" extends="main">
+		<put-attribute name="title" value="식품 - 매장상세정보 - 리뷰상세보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/foodReviewDetail.jsp"/>
+	</definition>
+	
+	<!-- 매장수정목록 -->
+	<definition name="fixCompFoodList" extends="main">
+		<put-attribute name="title" value="식품 - 매장 - 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/fixCompFoodList.jsp"/>
+	</definition>
+	
+	<!-- 매장 식품 등록 -->
+	<definition name="addNewFood" extends="main">
+		<put-attribute name="title" value="식품 - 매장 - 메뉴/식품 등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/addNewFood.jsp"/>
+	</definition>
+	
+	<!-- 매장 식품 수정 -->
+	<definition name="fixFood" extends="main">
+		<put-attribute name="title" value="식품 - 매장 - 메뉴/식품 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/fixFood.jsp"/>
+	</definition>
+	
+	<!-- 식품 상세보기 -->
+	<definition name="foodDetail" extends="main">
+		<put-attribute name="title" value="식품 - 매장 - 식품상세정보"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/foodDetail.jsp"/>
+	</definition>
+	
+	<!-- 장바구니 -->
+	<definition name="foodUserCartList" extends="main">
+		<put-attribute name="title" value="식품 - 내 장바구니"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/fcart/foodUserCartList.jsp"/>
+	</definition>
+	
+	<!-- 주문 폼 -->
+	<definition name="foodOrderForm" extends="main">
+		<put-attribute name="title" value="식품 - 주문하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/forder/foodOrderForm.jsp"/>
+	</definition>
+	
+	<!-- 주문완료 -->
+	<definition name="foodOrderSuccess" extends="main">
+		<put-attribute name="title" value="식품 - 주문완료"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/forder/foodOrderSuccess.jsp"/>
+	</definition>
+	
+	<!-- 내 주문목록 -->
+	<definition name="myFoodOrderList" extends="main">
+		<put-attribute name="title" value="식품 - 내 주문목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/forder/myFoodOrderList.jsp"/>
+	</definition>
+	
+	<!-- 내 주문상세정보 -->
+	<definition name="myFoodOrderDetail" extends="main">
+		<put-attribute name="title" value="식품 - 내 주문목록 - 상세정보확인"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/forder/myFoodOrderDetail.jsp"/>
+	</definition>
+	
+	<!-- (회원)리뷰작성하기 -->
+	<definition name="foodReviewForm" extends="main">
+		<put-attribute name="title" value="식품 - 리뷰작성"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/foodReviewForm.jsp"/>
+	</definition>
+	
+	<!-- QR코드 출력용 -->
+	<definition name="myFoodQRcode" extends="main">
+		<put-attribute name="title" value="식품 - 내 주문목록 - 상세정보확인 - QR코드 출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/forder/myFoodQRcode.jsp"/>
+	</definition>
+	
+	<!-- (기업)QR체크용 -->
+	<definition name="compAfterCheckQR" extends="main">
+		<put-attribute name="title" value="식품 - 내 주문목록 - 상세정보확인 - QR코드 출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/food/forder/compAfterCheckQR.jsp"/>
+	</definition>
+	
+	
+	
+</tiles-definitions>

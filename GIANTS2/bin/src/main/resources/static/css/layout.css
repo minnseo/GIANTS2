@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+/* 전체 Layout */
+#main{ width:1024px; margin:0 auto; font-size:10pt; font-family:"맑은 고딕"; }
+#main_header{ margin-bottom:10px; padding:0 10px 0 0; }
+#main_body{ padding:5px 5px 30px 5px; min-height:500px; }
+#main_footer{ color:#808080; background-color:#F8DE7E; font-weight:bold; padding:3px 0; }
+a:link{ color:#000000; text-decoration:none; }
+a:visited{ color:#000000; text-decoration:none; }
+a:hover{ color:#856088; font-weight:bold; }
+
+hr{ border:0.5px #856088 solid; }
+
+/* 좌측 메뉴 Layout(Admin, MyPage) */
+#page_nav{ float:left; width:25%; min-height:530px; }
+#page_body{ width:75%; float:left; }
+.page-clear{ clear:both; }
+
+/* Page 기본 Layout */
+.page-main{ width:98%; margin:0 auto; }
+.page-one{ width:600px; margin:0 auto; }
+
+/* 공통 메시지 및 Button */
+.result-display{ width:400px; height:200px; margin:50px auto; border:1px solid #856088; display:flex; align-items:center; justify-content:center; }
+.error-color{ color:#ED1B24; }
+.default-btn{ height:30px; padding:5px 10px; border:1px #856088 solid; border-radius:2px; color:white; background-color:#856088; font-weight:bold; cursor:pointer; }
+.default-btn:hover{ background-color:transparent; color:#856088; transition:0.2s ease-out; }
+
+.modify-btn{ height:30px; padding:5px 10px; border:1px #AA98A9 solid; border-radius:2px; color:white; background-color:#AA98A9; font-weight:bold; cursor:pointer; }
+.modify-btn:hover{ background-color:transparent; color:#AA98A9; transition:0.2s ease-out; }
+.modi-btn{ height:30px; padding:5px 10px; border:1px #AA98A9 solid; border-radius:2px; color:white; background-color:#AA98A9; font-weight:bold; cursor:pointer; }
+.modi-btn:hover{ background-color:transparent; color:#AA98A9; transition:0.2s ease-out; }
+
+.delete-btn{ height:30px; padding:5px 10px; border:1px #ED1B24 solid; border-radius:2px; color:white; background-color:#ED1B24; font-weight:bold; cursor:pointer; }
+.delete-btn:hover{ background-color:transparent; color:#ED1B24; transition:0.2s ease-out; }
+.del-btn{ height:30px; padding:5px 10px; border:1px #ED1B24 solid; border-radius:2px; color:white; background-color:#ED1B24; font-weight:bold; cursor:pointer; }
+.del-btn:hover{ background-color:transparent; color:#ED1B24; transition:0.2s ease-out; }
+.re-reset{ height:30px; padding:5px 10px; border:1px #ED1B24 solid; border-radius:2px; color:white; background-color:#ED1B24; font-weight:bold; cursor:pointer; }
+.re-reset:hover{ background-color:transparent; color:#ED1B24; transition:0.2s ease-out; }
+
+/* 공통 정렬 */
+.align-center{ text-align:center; }
+.align-right{ text-align:right; }
+
+/* 상단 메뉴 */
+div#main_menu ul{ list-style:none; }
+div#main_menu ul li{ margin-bottom:5px; }
+
+/* Main */
+
+/* 공통 등록, 수정 form */
+form{ width:600px; margin:0 auto; border:1px solid #856088; padding:10px 10px 30px 10px; }
+form ul li{ clear:both; }
+form ul li label{ width:100px; float:left; }
+ul{ list-style:none; }
+input{ margin-top:4px; padding:5px; }
+input[type="text"], input[type="password"], input[type="email"]{ width:350px; }
+
+/* 회원가입 등록, 수정, 삭제 form */
+#member_register{ width:800px; }
+#member_register ul,#member_modify ul{ padding-left:120px; }
+#member_register ul li lable{ padding-top:6px; }
+#member_register input[id="id"]{ width:236px; }
+#member_register input[id="zipcode"], #member_modify input[id="zipcode"]{ width:220px; }
+#member_modify{ width:96%; }
+#member_delete input[id="id"], #member_delete input[id="passwd"]{ width:240px; }
+
+/* Login */
+#member_login{ width:400px; padding:0; border:none; }
+#member_login li{ padding:0; }
+.floating-label{ position:relative; }
+.floating-label > .form-input{ width:300px; height:32px; padding:0.55rem 0.55rem; border:1px solid #856088; }
+.floating-label > label{ position:absolute; top:0; left:0; padding:1.25rem 0.65rem; transition:all 0.25s; }
+.floating-label > .form-input::placeholder{ color:transparent; }	/* transparent : 투명하게 */
+.floating-label > .form-input:focus, .floating-label > .form-input:not(:placeholder-shown){ padding-top:1.125rem; padding-bottom:0.125rem; }
+.floating-label > .form-input:focus + label, .floating-label > .form-input:not(:placeholder-shown) + label{
+	opacity:0.65; transform:scale(0.85) translateY(-0.5rem) translateX(-0.5rem);
+}
+#member_login .login-btn{ width:320px; }
+#member_login label[for="auto"]{ width:200px; padding:0 0 5px 0; }
+
+/* Admin, MyPage 공통 */
+.side-bar{
+	margin:10px 10px 10px 0; padding:10px;
+	/* side bar의 높이가 content의 높이와 동일하게 자동 조절 */
+	margin-bottom:-9999px; padding-bottom:9999px; background-color:#AA98A9;
+}
+.side-bar ul{ margin:0; padding:0; }
+.side-bar ul li{ padding:5px 10px 5px 10px; }
+.side-bar ul li img{ margin-left:3px; }
+/* side bar의 높이가 content의 높이와 동일하게 자동 조절하기 위해 흘러넘친 배경색 숨김 */
+.side-height{ overflow:hidden; margin-bottom:10px; }
+.menu-btn{
+	width:100%; height:50px; font-size:12pt; font-weight:bold; background-color:#856088;
+	border:1px solid #856088; color:white; border-radius:5px; cursor:pointer;
+}
+.menu-btn:hover{ background-color:transparent; border:2px solid white; color:white; }
+
+/* MyPage */
+.camera{
+	width:50px; height:50px; border-radius:100%; background-color:#856088; position:relative;
+	top:-60px; left:140px; border:2px solid #fff; cursor:pointer; padding:13px 0 0 10px;
+}
+.my-photo{ object-fit:cover; object-position:top; border-radius:50%; }
+
+/* 공통 목록 */
+form#search_form{ width:98%; padding-bottom:0; border:none; }
+ul.search{ width:380px; list-style:none; padding:none; margin:0 auto; }
+ul.search li{ margin:0 0 9px 0; padding:0; display:inline; }
+ul.search li select{ height:30px; }
+.list-space{ width:700px; margin:10px auto; }
+
+table.basic-table{ width:100%; margin:7px 0; border:1px solid #856088; border-collapse:collapse; }
+table.basic-table td, table.basic-table th{ border:1px solid #856088; padding:5px; }
+
+table.striped-table{ border:1px solid #FFF; font-size:15px; width:100%; border-collapse:collapse; margin:7px 0; }
+table.striped-table td, table.striped-table th{ padding:.7em .5em; vertical-align:middle; }
+table.striped-table th{ font-weight:bold; background:#AA98A9; }
+table.striped-table td{ border-bottom:none; }
+table.striped-table tr:nth-child(odd){ background:rgba(133, 96, 136, .2); }
+
+/* 게시판 목록 */
+form#search_form #order{ height:32px; }
+
+/* 게시판 form */
+
+/* 게시판 글상세 */
+ul.detail-info{ list-style:none; margin:0; padding:0; }
+ul.detail-info li{ margin:0; padding-top:5px; display:inline-block; }
+ul.detail-info li:last-child{ vertical-align:top; }
+
+.detail-img{ max-width:500px; }
+.detail-content img{ max-width:940px; }
+
+#output_fav, .output_rfav{ cursor:pointer; }
+#output_fcount{ width:50px; display:inline-block; }
+
+div#reply_div{ padding:5px 10px 40px 10px; margin-top:10px; background-color:rgba(170, 152, 169, 0.2); }
+form#re_form{ width:650px; border:none; }
+form#mre_form{ border:none; margin:5px; }
+
+span.re-title{ color:#000; font-size:12pt; line-height:200%; }
+span.letter-count{ color:#999; font-size:10pt; }
+textarea.rep-content{ width:90%; height:50px; margin:10px 10px; resize: none; }
+
+div#re_first, div#mre_first{ float:left; width:70%; padding-left:15px; margin-bottom:10px; }
+div#re_second, div#mre_second{ float:left; width:19%; margin-bottom:10px; }
+div#loading{				/* 정중앙에 div 배치: position, transform */
+	width:100px; height:50px; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+	display:flex; /* 세로 정렬 */ justify-content:center; /* 가로 정렬 */
+}
+div.paging-button{ text-align:right; }
+div#output{ clear:both; }

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 회원가입 폼 -->
+	<definition name="commonRegister" extends="main">
+		<put-attribute name="title" value="회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/commonRegister.jsp"/>
+	</definition>
+	
+	<!-- 일반회원 회원가입 결과 -->
+	<definition name="memregresult" extends="main">
+		<put-attribute name="title" value="#"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/memregresult.jsp"/>
+	</definition>
+	
+	<!-- 일반회원 회원탈퇴 결과 -->
+	<definition name="memregresult2" extends="main">
+		<put-attribute name="title" value="#"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/memregresult2.jsp"/>
+	</definition>
+	
+	<!-- 일반회원 아이디 찾기 -->
+	<definition name="memberfindId" extends="main"> 
+    	<put-attribute name="title" value="일반아이디찾기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/findIdForm.jsp"/>
+    </definition>
+    
+    <!-- 기업회원 아이디 찾기 -->
+    <definition name="companyfindId" extends="main"> 
+    	<put-attribute name="title" value="기업아이디찾기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/findIdFormCp.jsp"/>
+    </definition>
+    
+    <!-- 일반회원 아이디 찾기 결과 -->
+	<definition name="findIdResult" extends="main">
+		<put-attribute name="title" value="아이디찾기결과"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/findIdResult.jsp"/>
+	</definition>
+	
+	<!-- 기업회원 아이디 찾기 결과 -->
+	<definition name="findIdResultCp" extends="main">
+		<put-attribute name="title" value="아이디찾기결과"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/findIdResultCp.jsp"/>
+	</definition>
+	
+	<!-- 일반회원 비밀번호 찾기 -->
+	<definition name="memberfindPw" extends="main"> 
+    	<put-attribute name="title" value="일반비밀번호찾기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/findPwForm.jsp"/>
+    </definition>
+    
+    <!-- 기업회원 비밀번호 찾기 -->
+    <definition name="companyfindPw" extends="main"> 
+    	<put-attribute name="title" value="기업비밀번호찾기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/findPwFormCp.jsp"/>
+    </definition>
+    
+    <!-- 비밀번호 찾기 결과 -->
+    <definition name="findPwResult" extends="main">
+		<put-attribute name="title" value="비밀번호찾기결과"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/findPwResult.jsp"/>
+	</definition>
+	
+	<!-- 일반 회원가입 -->
+	<definition name="memberRegister" extends="main">
+		<put-attribute name="title" value="일반회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/memberRegister.jsp"/>
+	</definition>
+	
+	<!-- 기업 회원가입 -->
+	<definition name="companyRegister" extends="main">
+		<put-attribute name="title" value="기업회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/companyRegister.jsp"/>
+	</definition>
+	
+	<!-- 로그인 -->
+	<definition name="memberLogin" extends="main"> 
+    	<put-attribute name="title" value="회원로그인"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberLogin.jsp"/>
+    </definition>
+    
+<!-- 공통페이지 시작 -->    
+    <!-- 마이페이지 -->
+    <definition name="myPage" template="/WEB-INF/views/template/layout_mypage.jsp">
+		<put-attribute name="title" value="마이페이지"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/views/template/mypage_nav.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/memberView.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
+	</definition>
+	
+	
+	<!-- 일반 회원정보수정 -->
+	<definition name="memberModify" extends="myPage"> 
+    	<put-attribute name="title" value="일반회원정보수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberModify.jsp"/>
+    </definition>
+    
+    <!-- 기업 회원정보수정 -->
+    <definition name="companyModify" extends="myPage"> 
+    	<put-attribute name="title" value="기업회원정보수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/companyModify.jsp"/>
+    </definition>
+    
+    <!-- 비밀번호변경 -->
+    <definition name="memberChangePasswd" extends="myPage"> 
+    	<put-attribute name="title" value="비밀번호변경"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberChangePasswd.jsp"/>
+    </definition>
+    
+    <!-- 닉네임유효성검사 -->
+    <definition name="memberChangeNk" extends="myPage"> 
+    	<put-attribute name="title" value="낙네임변경"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberChangeNk.jsp"/>
+    </definition>
+    
+    <!-- 닉네임변경 -->
+    <definition name="memberChangeNkMd" extends="myPage"> 
+    	<put-attribute name="title" value="낙네임수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberChangeNkMd.jsp"/>
+    </definition>
+    
+    
+    <!-- 일반 회원탈퇴 -->
+	<definition name="memberDelete" extends="myPage"> 
+    	<put-attribute name="title" value="일반회원탈퇴"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberDelete.jsp"/>
+    </definition>
+    
+    <!-- 기업 회원탈퇴 -->
+    <definition name="companyDelete" extends="myPage"> 
+    	<put-attribute name="title" value="기업회원탈퇴"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/companyDelete.jsp"/>
+    </definition>
+<!-- 공통페이지 끝 -->    
+    
+    
+<!-- 일반페이지 시작 -->
+    <!-- 일반회원 티켓구매내역 -->
+    <definition name="memberMypageTicketList" extends="myPage"> 
+    	<put-attribute name="title" value="회원티켓내역"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberMypageTicketList.jsp"/>
+    </definition>
+    
+    <!-- 일반회원 푸드구매내역 -->
+    <definition name="memberMypageFoodList" extends="myPage"> 
+    	<put-attribute name="title" value="회원푸드내역"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberMypageFoodList.jsp"/>
+    </definition>
+    
+	<!-- 주문상세정보 -->
+	<definition name="memberMypageFoodDetail" extends="myPage">
+		<put-attribute name="title" value="식품 - 내 주문목록 - 상세정보확인"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/memberMypageFoodDetail.jsp"/>
+	</definition>    
+    
+    <!-- 일반회원 굿즈구매내역 -->
+    <definition name="memberMypageGoodList" extends="myPage"> 
+    	<put-attribute name="title" value="회원굿즈내역"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/memberMypageGoodList.jsp"/>
+    </definition>
+<!-- 일반페이지 끝 -->
+    
+    
+<!-- 기업페이지 시작 -->
+	<!-- 푸드목록 -->
+	<definition name="compMypageFoodList" extends="myPage">
+		<put-attribute name="title" value="기업상품목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/compMypageFoodList.jsp"/>
+	</definition>
+	
+    <!-- 주문내역 -->
+    <definition name="compMypageOrderList" extends="myPage"> 
+    	<put-attribute name="title" value="기업주문내역"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/compMypageOrderList.jsp"/>
+    </definition>
+    
+	<!-- 주문상세정보 -->
+	<definition name="compMypageOrderDetail" extends="myPage">
+		<put-attribute name="title" value="식품 - 내 주문목록 - 상세정보확인"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/compMypageOrderDetail.jsp"/>
+	</definition>
+	    
+    <!-- 매출관리 -->
+    <definition name="compMypageSaleManage" extends="myPage"> 
+    	<put-attribute name="title" value="기업매출관리"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/compMypageSaleManage.jsp"/>
+    </definition>
+<!-- 기업페이지 끝 -->
+        
+        
+<!-- 관리자페이지 시작 -->        
+    <!-- 관리자 회원관리 -->
+     <definition name="adminMemberList" extends="myPage"> 
+    	<put-attribute name="title" value="[관리자]회원목록(관리자)"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/adminMemberList.jsp"/>
+    </definition>
+    
+    <!-- 관리자 일반 회원정보수정 -->
+    <definition name="adminMemberModify" extends="myPage"> 
+    	<put-attribute name="title" value="[관리자]회원권한수정(일반)"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/adminModifyMember.jsp"/>
+    </definition>
+    
+    <!-- 관리자 기업 회원정보수정 -->
+    <definition name="adminCompanyModify" extends="myPage"> 
+    	<put-attribute name="title" value="[관리자]회원권한수정(기업)"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/adminModifyCompany.jsp"/>
+    </definition>
+    
+    <!-- 티켓관리 -->    
+    <definition name="adminMypageTicket" extends="myPage"> 
+    	<put-attribute name="title" value="[관리자]티켓관리"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/adminMypageTicket.jsp"/>
+    </definition>
+    
+	<!-- 굿즈목록 -->
+	<definition name="adminMypageGoods" extends="myPage">
+		<put-attribute name="title" value="[관리자]굿즈목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/adminMypageGoods.jsp"/>
+	</definition>
+	
+	<!-- 굿즈 주문 목록 -->
+	<definition name="adminMypageGoodsOrderList" extends="myPage">
+		<put-attribute name="title" value="[관리자]굿즈구매목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/adminMypageGoodsOrderList.jsp"/>
+	</definition>
+	
+	<!-- 굿즈 주문 목록 -->
+	<definition name="adminMypageGoodsOrderListDetail" extends="myPage">
+		<put-attribute name="title" value="[관리자]굿즈구매상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/adminMypageGoodsOrderListDetail.jsp"/>
+	</definition>
+	
+	<!-- 굿즈 주문 목록 -->
+	<definition name="adminMypageGoodsOrderModify" extends="myPage">
+		<put-attribute name="title" value="[관리자]굿즈구매수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/adminMypageGoodsOrderModify.jsp"/>
+	</definition>
+	
+	<definition name="adminMypageGoodsOrderStatus" extends="myPage">
+		<put-attribute name="title" value="[관리자]굿즈주문상태수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/adminMypageGoodsOrderStatus.jsp"/>
+	</definition>
+	
+	<!-- 매출관리 -->
+	<definition name="adminMypageSaleManage" extends="myPage">
+		<put-attribute name="title" value="[관리자]매출관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/adminMypageSaleManage.jsp"/>
+	</definition>	
+<!-- 관리자페이지 끝 -->
+    
+</tiles-definitions>

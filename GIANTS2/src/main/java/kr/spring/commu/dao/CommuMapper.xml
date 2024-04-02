@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.commu.dao.CommuMapper">
+
+	<!-- 커뮤니티 글 쓰기 -->
+	<insert id="insertCommu" parameterType="commuVO">
+		INSERT INTO commu (commu_num, commu_title, commu_content, commu_ip, mem_num) 
+		VALUES (commu_seq.nextval, #{commu_title}, #{commu_content}, #{commu_ip}, #{mem_num})
+	</insert>
+	
+	<!-- 커뮤니티 글 목록 -->
+	<!-- 커뮤니티 글 검색 -->
+	<sql id="commuSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1"> <!-- 검색 : 제목 -->
+					c.commu_title LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2"> <!-- 검색 : 작성자 -->
+					m.mem_nickname LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 3"> <!-- 검색 : 내용 -->
+					c.commu_content LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 커뮤 글 조회 순서 -->
+	<sql id="commuOrder">
+		<if test="order == 1"> <!-- 커뮤 글 최신글 순서 -->
+			ORDER BY commu_date DESC 
+		</if>
+		<if test="order == 2"> <!-- 커뮤 글 조회수 순서 -->
+			ORDER BY commu_hit DESC
+		</if>
+		<if test="order == 3"> <!-- 커뮤 글 좋아요 수 순서 -->
+			ORDER BY fav_cnt DESC
+		</if>
+		<if test="order == 4"> <!-- 커뮤 글 댓글수 순서 -->
+			ORDER BY re_cnt DESC
+		</if>
+	</sql>
+	
+	
+	<!-- 전체/검색 레코드 수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM commu c JOIN member m ON c.mem_num = m.mem_num
+		<include refid="commuSearch"></include>
+	</select>
+	
+	<!-- 전체or검색 목록 -->
+	<select id="selectList" parameterType="map" resultType="commuVO">
+		SELECT * 
+		FROM (SELECT a.*, rownum rnum 
+			  FROM (SELECT c.commu_num, 
+			  			  <![CDATA[
+			  			   REPLACE(REPLACE(c.commu_title,'<','&lt;'),'>','&gt;') commu_title,
+			  				]]>
+			  			   c.commu_hit,
+			  			   c.commu_date,
+			  			   c.mem_num,
+			  			   m.mem_id,
+			  			   m.mem_nickname,
+			  			   r.re_cnt,
+			  			   f.fav_cnt 
+			  		FROM commu c JOIN member m 
+			  					    ON c.mem_num = m.mem_num 
+			  					   LEFT OUTER JOIN (SELECT COUNT(*) re_cnt, commu_num 
+			  					   					FROM commu_reply GROUP BY commu_num)r 
+			  					    ON c.commu_num = r.commu_num  
+			  					   LEFT OUTER JOIN (SELECT COUNT(*) fav_cnt, commu_num 
+			  									    FROM commu_like GROUP BY commu_num)f 
+			  					    ON c.commu_num = f.commu_num 
+			  		<include refid="commuSearch"></include>
+			  		<include refid="commuOrder"></include>)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
+	
+	<!-- 커뮤니티 글 상세 -->
+	<select id="selectCommu" parameterType="integer">
+		SELECT * 
+		FROM commu c JOIN member m USING(mem_num) 
+		WHERE c.commu_num = #{commu_num}
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertReply" parameterType="commuReplyVO">
+		INSERT INTO commu_reply(
+			re_num,
+			re_content,
+			re_ip,
+			commu_num,
+			mem_num		
+			)
+		VALUES(
+			commu_reply_seq.nextval,
+			#{re_content},
+			#{re_ip},
+			#{commu_num},
+			#{mem_num}
+			)
+	</insert>
+	
+	<!-- 댓글 목록 -->
+	<select id="selectListReply" parameterType="map" resultType="commuReplyVO">
+		SELECT * 
+		FROM (SELECT a.*, rownum rnum 
+			  FROM (SELECT re_num,
+			  			   <![CDATA[ 
+			  			   REPLACE(REPLACE(re_content,'<','&lt;'),'>','&gt;') re_content,
+			  			   ]]> 
+			  			   re_date,
+			  			   re_mdate,
+			  			   commu_num,
+			  			   mem_num,
+			  			   mem_id,
+			  			   mem_nickname 
+			  		FROM commu_reply JOIN member USING(mem_num) 
+			  		WHERE commu_num = #{commu_num} 
+			  		ORDER BY re_num DESC)a) 
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 커뮤니티 신고 글 등록 -->
+	<insert id="insertReport" parameterType="commuReportVO">
+		INSERT INTO commu_report (repo_num,repo_content,repo_ip,repo_category,mem_num,commu_num) 
+		VALUES (commu_report_seq.nextval, #{repo_content} , #{repo_ip}, #{repo_category}, #{mem_num}, #{commu_num})
+	</insert>
+	
+	
+	<!-- 커뮤니티 신고 목록 -->
+	<select id="selectListReport" parameterType="map" resultType="commuReportVO">
+		SELECT * 
+		FROM (SELECT a.*, rownum rnum 
+			  FROM (SELECT repo_num, 
+			  			   <![CDATA[ 
+			  			   REPLACE(REPLACE(repo_content,'<','&lt;'),'>','&gt;') repo_content,
+			  			   ]]> 
+			  			   repo_date,
+			  			   repo_category,
+			  			   commu_num,
+			  			   mem_num,
+			  			   mem_id,
+			  			   mem_nickname 
+			  		FROM commu_report JOIN member USING(mem_num)
+			  		ORDER BY repo_num DESC)a) 
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>	
+
+
+

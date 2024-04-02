@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 아래 설정을 상황에 맞게 수정해서 사용하세요 -->
+	<definition name="a2" extends="main">
+		<put-attribute name="title" value="SpringPage"/>
+		<put-attribute name="body" value="/WEB-INF/views/main/main.jsp"/>
+	</definition>
+</tiles-definitions>

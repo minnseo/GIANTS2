@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+hr{ margin:15px 0; } 
+
+.error-color{ color:#dd032f; }
+
+/* 버튼 */
+.accept-btn, .admin-btn, .gray-btn{ width:100px; height:30px; border-radius:5px; color:white; font-weight:bold; cursor:pointer; }
+.accept-btn:hover, .admin-btn:hover, .gray-btn:hover{ background-color:transparent; transition:0.2s ease-out; }
+
+.accept-btn{ border:1px #dd032f solid; background-color:#dd032f; }
+.accept-btn:hover{ color:#dd032f; }
+
+.admin-btn{ border:1px #052345 solid; background-color:#052345; }
+.admin-btn:hover{ color:#052345; }
+
+.gray-btn{ border:1px #999 solid; background-color:#999; }
+.gray-btn:hover{ color:#999; }
+
+.small{ width:50px; height:25px; }
+.big{ width:150px; height:50px; font-size:18px; }
+
+/* 요금안내 */
+.price-info{ width:100%; display:flex; justify-content:center; margin:15px 0; font-size:16px; }
+.price-left, .price-right{ width:50%; margin:0 auto; }
+.refunt-info{ font-size:16px; margin:0 2%; }
+
+.info-left, .info-right{ width:90%; margin:0 auto; }
+.color-red{ border:2px solid #dd032f; }
+
+.info-left table, .info-right table, .select-grade table, .select-block table, .selected-seat table, .edit-radioBox table{ width:90%; margin:0 auto; text-align:center; border-collapse:collapse; font-size:15px; }
+.info-left table tr, .info-right table tr, #grade_list tr, .select-grade table tr, .select-block table tr, .selected-seat table tr, .edit-radioBox table tr:first-child{ border-bottom:1px solid #999; }
+.info-left table th, .info-right table th, #seat_list th, #grade_list th{ background:#999; padding:5px; }
+.info-left table td, .info-right table td, #seat_list td, #grade_list td, .select-grade table td, .select-block table td, .selected-seat td, .edit-radioBox td{ padding:5px; }
+
+.info-list{ margin-top:15px; }
+.info-list li, .refunt-info li{ margin:10px 0; }
+
+/* 경기 등록 및 수정 */
+#insert_game, #update_game{ margin:0 auto; font-size:16px; }
+
+.form-list{ width:50%; margin:0 auto; text-align:center; }
+.form-list ul li{ clear:both; margin:25px 0; }
+.form-list label{ width:100px; float:left; font-weight:bold; }
+.form-list input[type="text"], .form-list input[type="number"]{ width:400px; height:30px; }
+
+/* 목록 */
+#game_list, #grade_list, #seat_list{ width:800px; text-align:center; margin:0 auto; border-collapse:collapse; font-size:15px; }
+#grade_list a:hover{ color:#052345; font-weight:bold; }
+
+/* 좌석 등록 */
+#seat_write, .seatform-update{ width:35%; margin:0 auto; text-align:center; }
+#seat_write ul li, .seatform-update ul li{ margin:10px 0; }
+#seat_write ul li label, .seatform-update ul li label{ width:100px; float:left; font-weight:bold; }
+#seat_write input[type="number"], .seatform-update input[type="number"]{ width:50px; text-align:center; }
+
+.seat-list table{ width:800px; margin:0 auto; text-align:center; }
+
+input[type="checkbox"], input[type="radio"]{ accent-color:#dd032f; }
+
+/* 좌석 선택 */
+.select-ticket, .check-info{ width:100%; display:flex; justify-content:center; }
+.select-left, .select-right, .info3-left, .info3-right{ width:50%; margin:auto; }
+
+.selected-info, .game-logo{ width:50%; margin:20px auto; padding:10px 0; text-align:center; border:1px solid #999; }
+
+.select-grade, .select-block, .selected-seat, .edit-radioBox{ width:75%; height:200px; margin:25px auto; overflow:auto; overflow-x: hidden; white-space:nowrap; }
+.select-grade hr, .select-block hr, .selected-seat hr, .edit-radioBox hr{ margin:0 auto; }
+.select-grade th, .select-block th, .selected-seat th, .edit-radioBox th{ font-weight:bold; font-size:16px; padding:5px; }
+.edit-radioBox{ height:100px; }
+
+.select-grade, .select-block { position: relative; }
+.select-grade .select-checked, .select-block .select-checked{
+	position: absolute; display:none; left:0; top:0; width:500px; height:200px;
+}
+
+.grade-table{ width:100%; text-align:center; }
+.grade_title:hover{ cursor:pointer; }
+
+.group-btn{ width:75%; margin:0 auto; text-align:center; }
+.group-btn input{ margin:0 10px; }
+
+.seat-box{ background-color:#f1f1f1; width:500px; height:500px; margin:0 auto; }
+.ground{ background-color:#fff; width:50%; margin:0 auto; padding:10px 0; text-align:center; }
+.seat-check{ width:80%; height:80%; margin:10% auto; text-align:center; }
+.seat-check2{ width:80%; margin:0 auto; text-align:center; }
+
+.row-div span{ color:#999; }
+
+.seat-btn{ width:25px; height:25px; border:none; background-color:#fff; margin:5px 5px; }
+.seat-btn:hover{ cursor:pointer; background-color:transparent; transition:0.2s ease-out; border:1px solid #fff; }
+.clicked{ background:#fff; border:1px solid #999; }
+.click-grade, .click-block{ background:#999; opacity:0.2; }
+
+.admin-reserved{ background-color:transparent; border:1px solid #dd032f; }
+.admin-reserved:hover{ background-color:#dd032f; }
+
+.reserved{ background:#999; }
+.reserved:hover{ background:#999; }
+
+.gn1{ background:#627833; }	/* 외야석 */
+.gn41{ background:#10537d; }	/* 내야상단석 */
+.gn42{ background:#be1a2a; }	/* 중앙상단석 */
+.gn43{ background:#3082b5; }	/* 내야필드석 */
+.gn61{ background:#8b4a97; }	/* 3루단체석 */
+.gn62{ background:#88be3b; }	/* 내야탁자석 */
+.gn63{ background:#D77783; }	/* 중앙탁자석 */
+.gn101{ background:#17bedf; }	/* 와이드탁자석 */
+.gn102{ background:#efbc64; }	/* 응원탁자석 */
+.gn103{ background:#c6b1c7; }	/* 로케트배터리존 */
+
+/* 스크롤바 */
+.scrollBar::-webkit-scrollbar { width:10px;  /* 스크롤바의 너비 */ }
+.scrollBar::-webkit-scrollbar-thumb { height:30%; /* 스크롤바의 길이 */ background:#dd032f; /* 스크롤바의 색상 */ border-radius: 10px; }
+.scrollBar::-webkit-scrollbar-track { background:rgba(5, 59, 68, .1);  /*스크롤바 뒷 배경 색상*/ }
+
+/* 예매정보 확인 */
+.select-gameInfo{ width:80%; margin:0 auto; }
+.game-logo img{ width:50px; height:50px; }
+
+.left-no1, .left-no2, .left-no3{ width:90%; height:130px; margin:20px auto; }
+.back-white{ height:80px; background:#fff; font-size:15px; display: flex; align-items:center; margin:10px 0; }
+
+#border_text{ width:75px; text-align:center; border:1px solid #052345; font-size:16px; padding:10px; margin-left:20px; }
+.order-info{ margin-left:20px; font-size:16px; }
+.order-info th{ width:80px; font-weight:bold; text-align:left; }
+.left-no3 h2, .ticketInfo h2, .payment-info h2{ margin-bottom:10px; }
+
+.game-information, .ticketInfo, .payment-info, .price-information{ width:90%; margin:20px auto; }
+#seatInfo{ border:1px solid #999; padding:10px; }
+
+.payInfo input[type=radio]{ margin:0 5px 0 20px; }
+.price-information table{ width:100%; text-align:center; font-size:16px; font-weight:bold; }
+
+/* 결제 완료 */
+.ticket-info1{ width:80%; margin:0 auto; text-align:center; }
+.reserved1{ margin:20px 0; font-size:16px; font-weight:bold; }
+.reserved2{ margin:20px 0; }
+
+/* 티켓 정보 */
+.ticket-info2{ width:80%; height:300px; background:url('/images/ticketBack.png') no-repeat; background-size:100% 100%; margin:20px auto; text-align:center; font-size:13px; font-weight:bold; }
+.ticket-info3{ width:80%; display:flex; justify-content:center; margin:20px auto; }
+.ticket-info, .ticket-info4, .ticket-info5{ width:80%; margin:20px auto; }
+.ticket-content{ padding:15px 0 0 30px; height:250px; color:white; text-align:left; display:flex; justify-content:center; }
+.ticket-ul{ width:85%; }
+.ticket-qr{ width:15%; }
+
+.ticket-content2{ padding-right:30px; color:white; text-align:right; }
+
+.info3-left{ border-right:2px solid #999; }
+
+.ticket-table{ font-size:14px; }
+.ticket-table tr td:first-child{ width:120px; font-weight:bold; text-align:center; }
+.seat-infoLine{ font-size:12px; }
+
+/**/
+.edit-btnGroup{ text-align:center; margin:0 auto; }
+
+.mypage-form2{
+	margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    width:1000px;
+}
+
+.mypage-top2{
+	display: flex;
+    position: relative;
+    border-bottom: 1px solid #BBB;
+    padding: 25px 0;
+    height: 40px;
+    z-index: 19;
+    margin:0 auto 30px auto;
+    width:1000px;
+}
+.mypage-top-title .h2{
+	display: inline-block;
+	font-size: 29px;
+	line-height: 30px;
+	padding-top: 10px;
+	background: url(../_Img/Common/ico_mtit.gif) no-repeat 0 0;
+	margin-right: 25px;
+}
+.mypage-top-title .p{
+	display: inline-block;
+	font-size: 13px;
+}

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.gcart.dao.GcartMapper">
+	<resultMap type="GcartVO" id="cartMap">
+		<result property="goodsVO.goods_name" column="goods_name"/>
+		<result property="goodsVO.goods_status" column="goods_status"/>
+		<result property="goodsVO.goods_dprice" column="goods_dprice"/>
+		<result property="goodsOptionVO.goods_stock" column="goods_stock"/>
+	</resultMap>
+	
+	
+	<sql id="cartCondition">
+	/*주문폼에서 장바구니 정보를 읽어올 때 cart_numbers 사용, 배열에 넣어주는 작업*/
+		<if test="cart_numbers!=null and cart_numbers.length>0">
+			AND cart_num IN
+			<foreach item="goods" index="index" collection="cart_numbers"
+                        open="(" separator="," close=")">  
+				#{goods}
+			</foreach>
+		</if>
+	</sql>
+
+	
+	
+	<!-- 장바구니에 상품 등록 -->
+	<insert id="insertCart" parameterType="GcartVO">
+		INSERT INTO g_cart(
+		  cart_num,
+		  goods_num,
+		  order_quantity,
+		  mem_num,
+		  opt_num,
+		  reg_date)
+		VALUES (
+		  g_cart_seq.nextval,
+		  #{goods_num},
+		  #{order_quantity},
+		  #{mem_num},
+		  #{opt_num},
+		  SYSDATE)	
+	</insert>
+	
+	
+	<!-- 장바구니 목록 -->
+	<select id="getListCart" parameterType="map" resultMap="cartMap">
+		SELECT c.cart_num, g.goods_num, mem_num, order_quantity, g.goods_name, c.opt_num,
+		o.goods_size, g.goods_dprice, o.goods_stock, g.goods_status, 
+        (c.order_quantity * g.goods_dprice) as sub_total, 
+        (c.order_quantity * g.goods_dprice * 0.02) as order_point
+		FROM g_cart c 
+        JOIN goods g ON c.goods_num = g.goods_num
+        JOIN goods_option o ON c.opt_num = o.opt_num
+		WHERE c.mem_num=#{mem_num}
+		<include refid="cartCondition"></include>
+        ORDER BY g.goods_num ASC
+	</select> 
+
+	<!-- 회원번호 별 총 구매금액 (장바구니에서는 포인트 차감이 안되므로 상품 정가만 보여주면 됨) -->
+	<select id="getTotalByMem_num" parameterType="map"
+		resultType="integer">
+		SELECT NVL(SUM(sub_total),0) 
+		FROM ( SELECT c.order_quantity *
+		i.goods_price sub_total
+		FROM g_cart c JOIN goods i ON c.goods_num = i.goods_num 
+		WHERE c.mem_num =#{mem_num} <include refid="cartCondition"></include>)
+	</select>
+	
+	<select id="getTotalByPoint" parameterType="map"
+		resultType="integer">
+		SELECT TO_CHAR(NVL(SUM(order_point),0) 
+		FROM ( SELECT c.order_quantity * i.goods_price * 0.02 as order_point
+		FROM g_cart c JOIN goods i ON c.goods_num = i.goods_num 
+		WHERE c.mem_num =#{mem_num})
+	</select>
+	
+
+
+</mapper>
+	

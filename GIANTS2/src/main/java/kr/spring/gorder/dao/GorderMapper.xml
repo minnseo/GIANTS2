@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.gorder.dao.GorderMapper">
+<!-- 관리자 주문 목록 검색 -->
+<sql id="orderSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+					order_num = #{keyword}
+				</if>
+				<if test="keyfield == 2">
+					o.receive_name LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 3">
+					goods_name LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+		<!-- 사용자 주문 목록 검색 -->
+	<sql id="orderSearchByUser">
+		WHERE mem_num = #{mem_num}
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				AND order_num = #{keyword}
+			</if>
+			<if test="keyfield == 2">
+				AND goods_name LIKE '%' || #{keyword} || '%'
+			</if>
+		</if>
+	</sql>
+	
+<!-- 매출 목록-->
+<select id="getListSale" resultType="gorderDetailVO">
+SELECT
+    goods_num,
+    goods_name,
+    total_sales,
+    DENSE_RANK() OVER (ORDER BY total_sales DESC) as sales_rank
+FROM (
+    SELECT 
+        d.goods_num,
+        d.goods_name,
+        SUM(d.goods_dprice * d.order_quantity) as total_sales
+    FROM g_order o 
+    JOIN g_order_detail d ON o.order_num = d.order_num
+    WHERE o.order_status &lt; 5
+    GROUP BY d.goods_num, d.goods_name
+) 
+ORDER BY sales_rank
+
+</select>
+
+<!-- 월 별 매출 -->
+<select id="orderMonth" parameterType="string" resultType="gorderDetailVO" >
+SELECT 
+REPLACE(SUBSTR(TO_CHAR(o.order_regdate,'YYYY-MM'),INSTR(TO_CHAR(o.order_regdate,'YYYY-MM'),'-')+1),'0','') title_month, SUM(d.goods_dprice * d.order_quantity) month_sale
+FROM g_order o 
+JOIN g_order_detail d ON o.order_num = d.order_num
+<![CDATA[	
+WHERE o.order_status < 5 AND TO_CHAR(o.order_regdate,'YYYY') = #{year}  GROUP BY TO_CHAR(o.order_regdate,'YYYY-MM')
+]]>
+</select>
+<!-- 카테고리 count -->
+<select id="countCategory" resultType="gorderDetailVO">
+select g.goods_category as goods_category, count(g.goods_category) as count_category
+from g_order_detail d join goods g
+on g.goods_num = d.goods_num 
+join g_order o on o.order_num=d.order_num
+<![CDATA[	
+where o.order_status<5
+]]>
+group by g.goods_category
+</select>
+
+<!-- 상품 주문 -->
+	<insert id="insertOrder" parameterType="gorderVO">
+		INSERT INTO g_order(
+		  order_num,
+		  order_dcost,
+		  used_point,
+		  mem_num,
+		  goods_name,
+		  order_payment, 
+		  order_status,
+		  order_regdate,
+		  order_name,
+		  receive_name,
+		  order_zipcode,
+		  order_address1,
+		  order_address2,
+		  mem_phone,
+		  order_message,
+		  order_total,
+		  merchant_uid		  
+		  )
+		VALUES(
+		  #{order_num},
+		  #{order_dcost},
+		  #{used_point},
+		  #{mem_num},
+		  #{goods_name},
+		  #{order_payment},
+		  #{order_status},
+		  SYSDATE,
+		  #{order_name},
+		  #{receive_name},
+		  #{order_zipcode},
+		  #{order_address1},
+		  #{order_address2},
+		  #{mem_phone},
+		  #{order_message},
+		  #{order_total},
+		  #{merchant_uid}
+		  )  
+	</insert>
+	
+	<insert id="insertOrderDetail" parameterType="gorderDetailVO">
+		INSERT INTO g_order_detail(
+		  detail_num,
+		  order_num,
+		  order_point,
+		  goods_num,
+		  mem_num,
+		  goods_name,
+		  goods_dprice,
+		  goods_total,
+		  goods_size,
+		  order_quantity
+		  )
+		VALUES(
+		  g_order_detail_seq.nextval,
+		  #{order_num},
+		  #{order_point}, 
+		  #{goods_num},
+		  #{mem_num},
+		  #{goods_name},
+		  #{goods_dprice},
+		  #{goods_total},
+		  #{goods_size},
+		  #{order_quantity}
+		  )  
+	</insert>
+	
+	<!-- 포인트 누적해주기 -->
+	<update id="updatePoint" parameterType="integer">
+		UPDATE member_detail m
+		SET m.mem_point = m.mem_point + (
+		    SELECT SUM(o.order_point) 
+		    FROM g_order_detail o 
+		    WHERE o.mem_num = #{mem_num})
+		WHERE m.mem_num =#{mem_num}
+	</update>
+	
+	<select id="selectOrderCount" parameterType="map" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM g_order o JOIN member m
+		ON o.mem_num = m.mem_num
+		<include refid="orderSearch"></include>
+	</select>
+	
+	<!-- 관리자 주문 목록 -->
+	<select id="selectListOrder" parameterType="map" resultType="gorderVO">
+		SELECT
+		  *
+		FROM (SELECT
+		       a.*,
+		       rownum rnum
+		      FROM(SELECT
+		             *
+		           FROM g_order o JOIN member m
+		           ON o.mem_num = m.mem_num
+		           <include refid="orderSearch"></include>
+		           ORDER BY order_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+
+
+	
+	<select id="selectOrderCountByMem_num" parameterType="map">
+		SELECT
+		  COUNT(*)
+		FROM g_order
+		<include refid="orderSearchByUser"></include>
+	</select>
+	
+	<!-- 사용자 - 주문목록 -->
+	<select id="selectListOrderByMem_num" parameterType="map"
+	                                           resultType="GorderVO">
+		SELECT
+		  *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT
+		              *
+		            FROM g_order
+		            <include refid="orderSearchByUser"></include>
+		            ORDER BY order_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>		            
+	</select>
+	
+	<!-- 배송지정보수정 -->
+	<update id="updateOrder" parameterType="gorderVO">
+		UPDATE g_order
+		SET
+		  receive_name = #{receive_name},
+		  order_zipcode=#{order_zipcode},
+		  order_address1=#{order_address1},
+		  order_address2=#{order_address2},
+		  mem_phone=#{mem_phone},
+		  order_message=#{order_message},
+		  order_modifydate=SYSDATE
+		WHERE order_num=#{order_num}
+	</update>
+</mapper>

@@ -1,0 +1,370 @@
+@charset "UTF-8";
+
+ul.detail-info{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul.detail-info li{
+	margin:0;
+	padding-top:5px;
+	display:inline-block;
+}
+ul.detail-info li:last-child{
+	vertical-align:top;
+}
+.detail-img{
+	max-width:500px;
+}
+.detail-content img{
+	max-width:940px;
+}
+#output_fav, .output_rfav{
+	cursor:pointer;
+}
+#output_fcount{
+	width:50px;
+	display:inline-block;
+}
+div#reply_div{
+	padding:5px 10px 40px 10px;
+	margin-top:10px;
+	background-color:#EEEEEE;
+}
+form#re_form{
+	width:650px;
+	border:none;
+}
+span.re-title{
+	color:#000;
+	font-size:12pt;
+	line-height:200%;
+}
+span.letter-count{
+	font-size:10pt;
+	color:#999;
+}
+textarea.rep-content{
+	width: 1150px;
+    height: 100px;
+	margin:10px 10px;
+}
+div#re_first, div#mre_first{
+	float:left;
+	width:70%;
+	padding-left:15px;
+	margin-bottom:10px;
+}
+div#re_second, div#mre_second{
+	float:left;
+	width:19%;
+	margin-bottom:10px;
+}
+div#loading{
+	width:100px;
+	height:50px;
+	/*정중앙에 div를 배치하기 위한 설정*/
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	/*하위 요소를 수직으로 쌓을 수 있는 공간을 만듬*/
+	display:flex;
+	/*세로 정렬*/
+	align-items:center;
+	/*가로 정렬*/
+	justify-content:center;
+}
+div.paging-button{
+	text-align:right;
+}
+div#output{
+	clear:both;
+}
+form#mre_form{
+	border:none;
+	margin:5px;			   
+}
+form#search_form #order{
+	height:32px;
+}
+.board-view-table {
+    border-top: #dd0330 2px solid;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    width: 100%;
+}
+
+table {
+	font-size: inherit;
+    font: 100%;
+    
+    
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+/*  
+colgroup {
+    display: table-column-group;
+}
+col {
+    display: table-column;
+}
+*/
+.result-display{
+	width:400px;
+	height:200px;
+	margin:50px auto;
+	border:1px solid #000;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+table.striped-table{
+	border:1px #FFF solid;
+	font-size:15px;
+	width:100%;
+	border-collapse:collapse;
+	margin:7px 0;
+}
+table.striped-table td, table.striped-table th{
+	padding:.7em .5em;
+	vertical-align:middle;
+}
+table.striped-table td{
+	border-bottom:1px solid rgba(0,0,0,.1);
+}
+table.striped-table th{
+	font-weight:bold;
+	background:#E1E1E1;
+}						/*홀수 행*/
+table.striped-table tr:nth-child(odd){
+	background-color:rgb(250,250,247);
+}
+
+form#search_form{
+	width:98%;
+	padding-bottom:0;
+	border:none;
+}
+ul.search{
+	width:380px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;
+}
+ul.search li select{
+	height:30px;
+}
+
+
+/*--- 커뮤 상세 ---*/
+input[type="button"]{
+	width:60px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	border:none;
+}
+div.commu-content{
+	min-height:300px;
+}
+div.commu-table{
+	margin:0;
+	padding:0;
+}
+div.commu-table table#detail_tb,
+div.commu-table table#detail_tb td,
+div.commu-table table#detail_tb th{
+	border:1px solid #ccc;
+	border-collapse : collapse;
+	text-align:center;
+	font-size:11pt;
+}
+div.commu-table table#detail_tb{
+	margin:5px 0 10px 0;
+	padding:0;
+	width:100%;
+	height:100px;
+}
+div.commu-table table th{
+	background-color:rgb(230, 230, 230);
+}
+
+/*버튼*/
+.accept-btn, .admin-btn, .default-btn{ width:100px; height:30px; border-radius:5px; color:white; font-weight:bold; cursor:pointer; }
+.accept-btn:hover, .admin-btn:hover, .default-btn:hover{ background-color:transparent; transition:0.2s ease-out; }
+
+.default-btn{ border:1px #999 solid; background-color:#999; }
+.default-btn:hover{ color:#999; }
+
+.accept-btn{ border:1px #dd032f solid; background-color:#dd032f; }
+.accept-btn:hover{ color:#dd032f; }
+
+/*선수 소개*/
+.player-space .horizontal-area{
+	margin:2px;
+	padding:3px;
+	width:180px;
+	height:230px;
+	float:left;
+	text-align:center;
+	overflow:hidden;
+}
+.player-space .horizontal-area img{
+	width:175px;
+	height:175px;
+}
+.player-space .horizontal-area span{
+	padding:5px;
+	margin:5px;
+}
+.player-space .float-clear{
+	clear:both;
+}
+
+/* 드롭다운 */
+.dorpdown a{
+	color : #222;
+    text-decoration: none;
+}
+
+.dropdown {
+    /* 보더를 통해서 틀을 봐주는게 좋다 ! */
+    /* border: 1px solid #000; */
+    /* width: 200px; */
+    display: inline-block;
+    margin-right: 20%;
+    z-index:1;
+}
+.dropdown-btn {
+    width:100px;
+    height:40px;
+    /* 패딩으로 크기 늘려주기 */
+    padding : 10px;
+    font-size: 13px;
+    background-color: #dd032f;
+    color : white;
+    border: none;
+    cursor: pointer;
+    border-radius:5px;
+}
+
+.dropdown-submenu{
+    /*  border: 1px solid red; */
+    width:100px;
+    height:30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+    display: none;
+}
+
+
+.dropdown-submenu a {
+    display: block;
+    padding: 7px;
+    text-align: center;
+}
+
+.dropdown-submenu a:hover{
+    background-color: #dd0330; /* 드롭다운 hover부분 */
+}
+
+.dropdown:hover .dropdown-submenu {
+    display: block;
+}
+
+
+.dropdown-submenu a:hover{
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+	color: black;
+}
+.dropdown-submenu a:visited{
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+	color: black;
+}
+
+
+
+.commu_title a:hover{ /* 커뮤니티 리스트 제목 */
+	color: black;
+}
+
+.commu_title a:visited{
+	color: black;
+}
+
+
+
+
+/* plyerLsit */
+.title01{
+	display:flex;
+}
+
+.a-tab ul li a.over {
+    position: relative;
+    background: #dd0330;
+    border-color: #dd0330;
+    color: #fff;
+    text-decoration: underline;
+}
+.a-tab ul li a {
+    display: block;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    letter-spacing: -1px;
+    padding: 0 21px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid #ccc;
+    border-width: 1px;
+    color: #767676;
+}
+
+.a-tab ul li a {
+    display: block;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    letter-spacing: -1px;
+    padding: 0 21px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid #ccc;
+    border-width: 1px;
+    color: #767676;
+}
+
+.a-tab{
+	display:flex;
+	margin-left: 6%;
+	margin-bottom: 4%;
+	margin-top: -7%;
+}
+.aaa{
+	display:flex;
+}
+.error-color{
+	color:#ff0000;
+}
+

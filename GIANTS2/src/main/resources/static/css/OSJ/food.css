@@ -1,0 +1,1026 @@
+@charset "UTF-8";
+
+
+.bdr{
+	border: 1px solid black;
+}
+.error-color{
+	color:#ff0000;
+}
+
+.enFont{font-family: "NotoSans";}
+/*===== 푸드 공용
+==========================*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: inner-spin-button;    
+    opacity: 1;
+}
+
+.main-container hr{
+	size: 1px;
+}
+
+.comp-profileImg{
+	border: 1px solid red;
+	width: 250px;
+	height: 250px; 
+}
+
+/* 상단 타이틀 시작 */
+
+.main-title h2{
+	line-height: 35px;
+}
+/*상단 타이틀 끝------------*/
+
+/* 카테고리 */
+.food-category{
+	width: 100%;
+	height:44px;
+	border-bottom: 2px solid gray;
+	border-collapse:collapse;
+}
+
+.food-category ul {
+	list-style: none;
+	/* border: 1px solid gray; */
+	border-radius: 3px;
+}
+
+.food-category ul.float-left li{
+	display: inline-block;
+	width:120px;
+	height:44px;
+	line-height:44px;
+	font-size: 14pt;
+	font-weight: 600;
+	text-align: center;
+	background-color: white;
+}
+
+.food-category ul.float-left li div{
+	height: 100%;
+}
+.food-category ul.float-left li div:hover{
+	cursor: pointer;
+}
+
+.food-category div.float-right{
+	height: 100%;
+	line-height:44px;
+}
+.food-category div.float-right select{
+	height:43px;
+	size:44px;
+	font-size: 15pt;
+	font-weight: 600;
+	text-align: center;
+	border: 2px solid gray;
+	border-top: none !important;
+	border-bottom: none !important;
+}
+
+.food-cbox-on{
+	background-color: #46c8f0;
+}
+
+/* 목록 */
+.food-list{
+	width: 100%;
+}
+.food-list .f-list{
+	position:relative;
+	width: 100%;
+	height: 250px;
+	margin-top:30px;
+	border-bottom: 1px solid gray;
+}
+
+.food-list .f-list:hover{
+	cursor: pointer;
+}
+
+.f-img{
+	display: inline-block;
+	width:250px;
+	height:250px;
+	text-align: center;
+	line-height: 250px;
+}
+.food-main-img{
+	width: 220px;
+	height: 220px;
+	margin: 0 auto;
+	border-radius: 30px;
+	vertical-align: middle;
+}
+
+.comp-title{
+	display:inline-block;
+	width:900px;
+	height:50px;
+	font-size: 28pt;
+	position: absolute;
+	top:0;
+	left: 300px;
+}
+
+.comp-score{
+	display:inline-block;
+	width:900px;
+	font-size: 13pt;
+	position: absolute;
+	top: 80px;
+	left: 300px;
+}
+
+.comp-content{
+	display:inline-block;
+	width:900px;
+	height:117px;
+	font-size: 11pt;
+	position: absolute;
+	top: 133px;
+	left: 300px;
+}
+
+/* 맨하단 페이징 */
+.paging{
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+/*  ===================================
+	============ CompDetail ==============
+	=================================== */
+.adminBtn{
+	width: 100px;
+	height: 34px; 
+	margin: 5px 10px 0px 0px;
+	font-size: 1.2em;
+	font-weight: bold;
+	color:red;
+	background-color: white;
+	border-radius: 5px; 
+}
+.adminBtn:hover{
+	cursor: pointer;
+	background-color: lightgray;
+}
+	
+.comp-container{
+	padding-top: 30px;
+	width: 100%;
+}
+.comp-container .comp-detail{
+	position:relative;
+	width: 100%;
+	height: 250px;
+	padding-bottom: 30px;
+	/* border-bottom: 2px solid gray; */
+}
+/* <!-- 메뉴보기, 리뷰보기 타이틀 -->	*/
+.comp-container .comp-menu{
+	position:relative;
+	height: 50px;
+	line-height: 50px;
+	border:2px solid gray;
+}
+
+.comp-container .comp-menu div{
+	position: absolute;
+	display:inline-block;
+	width:596px;
+	height:100%;
+	font-size:2em;
+	font-weight:bold;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.comp-container .comp-menu div:first-child{
+	width: 598px;
+	border-right: none;
+}
+
+#showMenu{
+	top:0px;
+}
+
+#showReview{
+	top:0px;
+	left:600px;
+}
+
+/* 내용 */
+#compMenu_content{
+	min-height: 600px;
+	padding-top:5px;
+	border: 2px solid gray;
+	border-top: none;
+}
+
+#menu_tb{
+	width: 1150px;
+	height: 90%;
+	margin: 50px auto;
+	text-align: center;
+	vertical-align: top;
+}
+#menu_tb .food-info{
+	display:inline-block;
+	width: 210px;
+	padding: 20px 30px;
+}
+/* 메뉴가 존재하면 커서를 변경 */
+.y-food:hover{
+	cursor: pointer;
+}
+
+.food-mainImg{
+	border-radius:20px;
+	width: 210px;
+	height: 210px; 
+	margin-bottom: 10px;
+}
+
+.food-textBox{
+	display: inline-block;
+	width: 100%;
+	height: 17px;
+}
+
+.food-info p{
+	display:inline-block;
+	font-size: 1.4em;
+}
+
+.no-sell{
+	text-decoration: line-through;
+}
+
+/*  ===================================
+	========= fixCompFoodList =========
+	=================================== */
+	
+.compFood-list{
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	padding: 10px 0px;
+}
+.compFood-list a{
+	display:inline-block;
+	width: 400px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 2.5em;
+	color: gray;
+}
+
+.compFood-list a img{
+	display:inline-block;
+	width:58px;
+	vertical-align: top;
+}
+
+.compFood-list a span{
+	display: inline-block;
+	height: 60px;
+	width: 265px;
+	margin-left: 30px;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+#fix_compMenu{
+	min-height: 600px;
+}
+
+/* 매장수정 상품목록 테이블 */
+#fix_menuList{
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 1.7em;
+}
+#fix_menuList tr{
+	height:60px;
+	border-top: 1px solid black;
+}
+#fix_menuList tr:last-child{
+	border-bottom: 1px solid black;
+}
+#fix_menuList tr th{
+	padding: 10px 0px;
+}
+#fix_menuList tr td{
+	padding: 10px 0px;
+	text-align: center;
+}
+#fix_menuList tr td form{
+	display: inline-block;
+}
+
+#fix_menuList tr td input[type="button"],
+#fix_menuList tr td input[type="submit"]{
+	border-radius: 5px;
+	background-color:white;
+	padding: 3px;
+	font-size: 1em;
+	font-weight: bold;
+}
+#fix_menuList tr td input[type="button"]:hover,
+#fix_menuList tr td input[type="submit"]:hover{
+	color:white;
+	background-color:gray;
+}
+
+
+/*  ===================================
+	=========== addNewFood ============
+	=================================== */
+.tbox{
+	background-color: lightgray;
+}
+.comp-container h2{
+	padding-left: 10px;
+	color:black;
+}
+.inner-top{
+	margin-bottom: 20px;
+}
+.inner-top,
+.inner-bottom{
+	font-size:11pt;
+	color:black;
+	padding: 0px 30px;
+}
+.inner-top li,
+.inner-bottom li{
+	margin-top: 10px;
+}
+.inner-top li input,
+.inner-bottom li input{
+	height: 100%;
+	width: 300px;
+	font-size:13pt;
+}
+
+.inner-bottom li:last-child input{
+	width: 13px;
+}
+
+.inner-top li .label-wid{
+	display: inline-block;
+	width: 80px;
+}
+.inner-bottom li .label-wid{
+	display: inline-block; 
+	width: 120px;
+}
+.comp-container .align-center{
+	padding: 20px 0px;
+}
+.comp-container div.align-center button,
+.comp-container div.align-center input{
+	height: 30px;
+	padding: 3px 8px;
+	margin: 0px 5px;
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+/*  ===================================
+	=========== fixFood ============
+	=================================== */
+#upload1_name, #upload2_name{
+	font-family: "NotoSans";
+}
+
+
+/*  ===================================
+	=========== foodDetail ============
+	=================================== */
+.food-detail{
+	position: relative;
+    width: 1000px;
+    height: 510px;
+    padding: 0px 100px 50px 100px;
+}
+.f-line{
+	display: inline-block;
+	width: 1000px;
+    position: absolute;
+    top: 0px;
+    border-top: 2px solid black;
+}
+.food-detail .f-img{
+	display: inline-block;
+    width: 510px;
+    height: 510px;
+    text-align: center;
+    line-height: 510px;
+}
+.food-detail .f-img .food-main-img{
+	width: 510px;
+    height: 510px;
+    margin: 0 auto;
+    vertical-align: middle;
+    border-radius: unset;
+}
+.food-title{
+	display: inline-block;
+    width: 460px;
+    height: 50px;
+    font-size: 24pt;
+    position: absolute;
+    top: 30px;
+    left: 640px;
+}
+
+.food-price{
+	display: inline-block;
+    width: 460px;
+    font-size: 20pt;
+    color: #6b90dc;
+    position: absolute;
+    top: 110px;
+    left: 640px;
+}
+.food-quantity{
+	display: inline-block;
+    width: 460px;
+    height:35px;
+    font-size: 20pt;
+    position: absolute;
+    top: 180px;
+    left: 640px;
+    padding-bottom:20px;
+    border-bottom:2px solid lightgray;
+}
+.food-quantity #food_quantity{
+	width:70px;
+	font-size: 20pt;
+	text-align: center;
+}
+.food-total{
+	display: inline-block;
+    width: 460px;
+    font-size: 20pt;
+    position: absolute;
+    top: 267px;
+    left: 640px;
+}
+#food_total{
+	font-size: 24pt;
+	font-weight: bold;
+	color: #6b90dc;
+}
+.food-btn{
+	display: inline-block;
+    width: 460px;
+    font-size: 20pt;
+    position: absolute;
+    top: 377px;
+    left: 640px;
+}
+.food-btn input[type="button"]{
+	width:100%;
+	height: 60px;
+	margin: 5px 0px;
+	font-size: 22pt;
+	font-weight: bold;
+	border: 1px solid lightgray;
+	background-color: white;
+}
+.food-btn input[type="button"]:hover{
+	border: 1px solid black;
+	background-color: lightgray;
+	cursor: pointer;
+}
+/* 상세디테일 시작 */
+#food_detailContent{
+	width: 1000px;
+    min-height: 600px;
+    margin: auto;
+    border: 1px solid black;
+    text-align: center;
+}
+.detail-img{
+	width:500px;
+	height:500px;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.food-content{
+	min-height: 600px;
+	padding: 30px 50px;
+}
+.food-content img{
+	max-width: 900px;
+	min-height: 200px;
+}
+
+
+/*  ===================================
+	=========== foodUserCartList ======
+	=================================== */
+.cart-container{
+    width: 100%;
+    margin: auto;
+}
+
+.cart-List{
+	min-height:200px;
+	width:100%;
+	padding: 30px 0px;
+}
+#result_empty{
+	width: 1000px;
+	margin: 0px auto;
+	vertical-align:middle;
+	text-align: center;
+}
+#result_empty p{
+	height: 200px;
+	line-height: 200px;
+	font-size: 1.2em;
+	font-weight: 600;
+	color: gray;
+}
+
+#cart_tb{
+	width: 1000px;
+	margin:auto;
+	text-align: center;
+	font-size: 14pt;
+	border:2px solid gray;
+	border-collapse: collapse;
+}
+#cart_tb tr{
+	height: 80px; 
+	background-color: white;
+	border:2px solid gray;
+}
+#cart_tb tr:first-child{
+	background-color:lightgray;
+	height: 50px; 
+}
+#cart_tb tr:last-child{
+	height:50px;
+}
+#cart_tb tr th{
+	border:2px solid gray;
+}
+#cart_tb tr td{
+	border:1px solid lightgray;
+}
+
+#cart_tb tr td:nth-child(1){
+	width: 30px;
+}
+#cart_tb tr td:nth-child(2){
+	width: 100px;
+}
+#cart_tb tr td:nth-child(3){
+	width: 450px;
+}
+
+#cart_tb tr:last-child td{
+	font-size:12pt;
+	font-weight:bold;
+	background-color: #fbfafa;
+}
+#cart_tb tr:last-child td:nth-child(1){
+	padding-right: 10px;
+}
+#cart_tb input[type="checkbox"]{
+	width: 20px;
+	height: 20px;
+}
+#cart_tb input[type="number"]{
+	width: 55px;
+	border: 1px solid lightgray;
+	text-align:center;
+	font-size: 14pt;
+	
+}
+#cart_tb .change-count{
+	width: 57px;
+	height: 24px;
+	margin-top: 5px;
+	border: 1px solid lightgray;
+	background-color: #fff;
+	font-size: 12pt;
+	
+}
+#cart_tb .change-count:hover{
+	cursor: pointer;
+}
+
+
+.food-cart-img{
+	width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+#cart_tb .del-choice{
+	padding: 4px 10px;
+	background-color: #052345;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+}
+#cart_tb .del-choice:hover{
+	cursor: pointer;
+}
+
+#total_is{
+	margin-right: 10px;
+}
+
+.cart-btns{
+	padding: 10px 0px;
+}
+
+.cart-buttons{
+	width: 1000px;
+	margin: auto;
+}
+.cart-buttons button{
+	margin: 0px auto;
+	padding: 4px 10px;
+	background-color: #052345;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+}
+.cart-buttons button:first-child{
+	margin-left: 230px;
+}
+.cart-buttons button:nth-child(1),
+.cart-buttons button:nth-child(2){
+	padding: 10px 20px;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+
+.cart-buttons button:hover{
+	cursor: pointer;
+	background-color: #b6d3f2;
+	color: #052345;
+}
+.cart-buttons #all_order{
+	background-color: #dd032f;
+}
+.cart-buttons #sel_order{
+	background-color: #dd4103;
+}
+
+
+/*  ===================================
+	========== foodOrderForm ==========
+	=================================== */
+.order-container{
+	width: 100%;
+    margin: auto;
+}
+.order-List{
+	min-height:200px;
+	width:1000px;
+	padding: 30px 0px;
+	margin:auto;
+}
+.order-title{
+    margin-bottom: 10px;
+}
+.order-title h2{
+	line-height: 35px;
+}
+
+#order_tb{
+	width:100%;
+	margin:auto;
+	margin-bottom:100px;
+	text-align: center;
+	font-size: 14pt;
+	border:2px solid gray;
+	border-collapse: collapse;
+}
+#order_tb tr{
+	height: 80px; 
+	background-color: white;
+	border:2px solid gray;
+}
+#order_tb tr th{
+	border:2px solid gray;
+}
+#order_tb tr td:nth-child(2){
+	width: 350px;
+}
+#order_tb tr:first-child{
+	height: 50px;
+	background-color: lightgray;
+}
+#order_tb tr:last-child{
+	height: 50px;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+#order_tb tr td:nth-child(4),
+#order_tb tr:last-child td:nth-child(2){
+	width: 150px;
+}
+#order_tb tr:last-child td:first-child b{
+	margin-right: 20px;
+}
+#order_tb th,
+#order_tb td{
+	border:1px solid lightgray;
+}
+
+.order-List ul{
+	margin-left: 30px;
+	margin-bottom: 100px;
+	font-size: 1.2em;
+}
+.order-List ul li{
+	margin-bottom: 10px;
+}
+.order-List ul li label{
+	display:inline-block;
+	width: 100px;
+}
+
+.order-btn{
+	padding: 10px 20px;
+	font-size: 1.1em;
+	font-weight: bold;
+	background-color: #052345;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+}
+.order-btn:first-child {
+	margin-right: 10px;
+	background-color: #dd032f;
+}
+
+/*  ===================================
+	======== foodOrderSuccess ========
+	=================================== */
+.order-result{
+	font-size:1.2em;
+}
+
+
+/*  ===================================
+	========== myFoodOrderList ========
+	=================================== */
+
+.order-sort{
+	width: 100%;
+	height:44px;
+	margin-top: 20px; 
+}
+.order-sort div.float-left{
+	height: 100%;
+	line-height:44px;
+	font-size:1.1em;
+	color:gray;
+}
+
+.order-sort div.float-right{
+	height: 100%;
+	line-height:44px;
+}
+.order-sort div.float-right select{
+	height:43px;
+	size:44px;
+	font-size: 15pt;
+	font-weight: 600;
+	text-align: center;
+	border: 2px solid gray;
+	border-collapse:collapse;
+}
+.enable-order{
+	color:green;
+	text-decoration: underline;
+}
+.disable-order{
+	color: red;
+	text-decoration: line-through;
+}
+
+#orderList_container{
+	width: 100%;
+	margin: auto;
+	font-size: 13pt;
+	
+}
+
+#orderList_tb{
+	width: 100%;
+	margin: 20px 0px;
+	border:2px solid gray;
+	border-collapse: collapse;
+}
+#orderList_tb tr{
+	height: 70px;
+}
+#orderList_tb tr th{
+	border: 2px solid gray;
+}
+#orderList_tb tr td{
+	border: 1px solid lightgray;
+}
+#orderList_tb tr:first-child{
+	height: 50px;
+	background-color:lightgray;
+	border: 2px solid gray;
+}
+
+/*  ===================================
+	======== myFoodOrderDetail ========
+	=================================== */
+.orderDetail-container{
+	width: 1000px;
+	margin: auto;
+	margin-top: 40px;
+}
+.orderDetail-container ul{
+	margin-left: 20px; 
+}
+.orderDetail-container ul li{
+	margin : 5px 0px;
+}
+.orderDetail-container ul li label{
+	display: inline-block;
+	font-size:18px;
+	font-weight: bold;
+	width: 100px;
+}
+.orderDetail-container ul li p{
+	display: inline-block;
+	font-size:18px;
+	font-weight: bold;
+	color:gray;
+}
+
+.orderDetail-btn{
+	padding: 10px 20px;
+	font-size: 1.1em;
+	font-weight: bold;
+	background-color: #052345;
+	color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+}
+.orderDetail-btn:hover {
+	cursor: pointer;
+}
+.createQR{
+	background-color: #dd032f;
+}
+
+#qrcode {
+  width:160px;
+  height:160px;
+  margin-top:15px;
+}
+
+/*  ===================================
+	======== foodReviewForm.jsp =======
+	=================================== */
+	
+.reviewForm-container h2{
+	padding-left: 10px;
+	padding-top : 10px;
+	color:black;
+}
+
+.inner-box{
+	margin-bottom: 20px;
+}
+.inner-box{
+	font-size:11pt;
+	color:black;
+	padding: 0px 30px;
+}
+.inner-box li{
+	margin-top: 10px;
+}
+.inner-box li input{
+	height: 100%;
+	width: 300px;
+	font-size:13pt;
+}
+.inner-box li input[type="radio"]{
+	width: 30px;
+}
+
+.inner-box li .label-wid{
+	display: inline-block;
+	width: 80px;
+}
+.reviewForm-container div.align-center{
+	padding : 15px 0px;
+}
+.reviewForm-container div.align-center button,
+.reviewForm-container div.align-center input{
+	height: 30px;
+	padding: 3px 8px;
+	margin: 0px 5px;
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+/*  ===================================
+	====== foodCompDetailReview.jsp ===
+	=================================== */
+#compReview_content{
+	padding-top:5px;
+}
+.compReview-container{
+	margin-top: 20px;
+}
+#review_List{
+	width: 100%;
+	border-collapse: collapse;
+	border-left: none;
+	font-size: 1.2em;
+}
+#review_List tr{
+	height: 30px;
+	border: 1px solid black;
+}
+#review_List tr td{
+	text-align: center;
+	border: 1px solid black;
+}
+#review_List tr th{
+	background-color:lightgray;
+	border: 1px solid black;
+}
+#review_List tr th:first-child,
+#review_List tr td:first-child{
+	width: 100px;
+	border-left: none;
+}
+#review_List tr th:last-child,
+#review_List tr td:last-child{
+	width: 150px;
+	border-right: none;
+}
+
+/*  ===================================
+	====== foodReviewDetail.jsp ===
+	=================================== */
+.review-detail{
+	width: 100%;
+}
+.review-top{
+	margin-bottom: 20px;
+}
+.review-top ul{
+	list-style: none;
+}
+.review-top ul li:first-child{
+	float: left;
+}
+.review-top ul li:last-child{
+	float: right;
+}
+.review-top h1,
+.review-top h4{
+	display: inline-block;
+	
+}
+.bd-right{
+	border-right: 2px solid gray;
+	padding-right: 5px;
+}
+.review-content{
+	padding: 20px 30px;
+	border-bottom: 1px solid gray;
+}
+.review-content img{
+	max-width: 400px;
+	max-height: 400px; 
+}
+
+
+
+
+
+
+
+
+

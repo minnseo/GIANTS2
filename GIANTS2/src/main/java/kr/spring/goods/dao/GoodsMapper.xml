@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.goods.dao.GoodsMapper">
+	<!-- 상품 정보 등록 -->
+	<insert id="insertGoods" parameterType="goodsVO">
+		INSERT INTO goods(
+			goods_num,
+			goods_name,
+			goods_category,
+			goods_price,
+			goods_disc,
+			goods_dprice,
+			goods_content,
+			goods_photo,
+			goods_photoname,
+			goods_status)
+		VALUES(
+			#{goods_num},
+			#{goods_name},
+			#{goods_category},
+			#{goods_price},
+			#{goods_disc},
+			#{goods_dprice},
+			#{goods_content},
+			#{goods_photo},
+			#{goods_photoname},
+			#{goods_status})
+	</insert>
+	
+	<!-- 상품 재고 등록 -->
+	<insert id="insertGoodsOption" parameterType="goodsOptionVO">
+		INSERT INTO 
+			goods_option(
+				opt_num,
+				goods_num, 
+				goods_size, 
+				goods_stock) 
+		VALUES(
+				goods_opt_seq.nextval,
+      			#{goods_num}, 
+      			#{goods_size}, 
+      			#{goods_stock})
+	</insert>
+	
+	<!-- 상품 목록 -->
+	<sql id="goodsSearch">
+		<![CDATA[
+			WHERE goods_status < #{goods_status}
+		]]>
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				AND goods_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 2">
+				AND goods_content LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 3">
+				AND (goods_name LIKE '%' || #{keyword} || '%' OR goods_content LIKE '%' || #{keyword} || '%') 
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="goodsOrder">
+		<if test="order == 1">
+			ORDER BY goods_regdate DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY f.fav_cnt DESC NULLS LAST
+		</if>
+		<if test="order == 3">
+			ORDER BY r.re_cnt DESC NULLS LAST
+		</if>
+		<if test="order == 4">
+			ORDER BY goods_disc DESC
+		</if>
+		<if test="order == 5">
+			ORDER BY goods_dprice ASC
+		</if>
+	</sql>
+	
+	<sql id="goodsCategory">
+		<if test="goods_category == 0">
+			AND goods_category BETWEEN 1 AND 4
+		</if>
+		<if test="goods_category == 1">
+			AND goods_category = 1
+		</if>
+		<if test="goods_category == 2">
+			AND goods_category = 2
+		</if>
+		<if test="goods_category == 3">
+			AND goods_category = 3
+		</if>
+		<if test="goods_category == 4">
+			AND goods_category = 4
+		</if>
+	</sql>
+	  
+	<!-- 전체/검색 레코드 수 -->
+	<select id="selectGoodsRowCount" parameterType="map" resultType="integer">
+		SELECT 
+			count(*) 
+		FROM goods g
+		LEFT OUTER JOIN (SELECT count(*) fav_cnt, goods_num FROM goods_fav GROUP BY goods_num)f ON g.goods_num=f.goods_num
+		LEFT OUTER JOIN (SELECT count(*) re_cnt, goods_num FROM goods_review GROUP BY goods_num)r ON g.goods_num=r.goods_num
+		<include refid="goodsSearch"></include>
+		<include refid="goodsCategory"></include>
+	</select>
+	 
+	<!-- 전체/검색 목록 -->
+	<select id="selectGoodsList" parameterType="map" resultType="goodsVO">
+		SELECT
+			*
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM(SELECT
+			  			g.goods_num,
+			  			g.goods_name,
+			  			g.goods_dprice,
+			  			f.fav_cnt,
+			  			r.re_cnt,
+			  			g.goods_category,
+			  			g.goods_regdate,
+			  			g.goods_status,
+			  			o.total_stock
+			  	   FROM goods g
+			  	   LEFT OUTER JOIN (SELECT sum(goods_stock) total_stock, goods_num FROM goods_option GROUP BY goods_num)o ON g.goods_num=o.goods_num
+			  	   LEFT OUTER JOIN (SELECT count(*) fav_cnt, goods_num FROM goods_fav GROUP BY goods_num)f ON g.goods_num=f.goods_num
+			  	   LEFT OUTER JOIN (SELECT count(*) re_cnt, goods_num FROM goods_review GROUP BY goods_num)r ON g.goods_num=r.goods_num
+			  	   <include refid="goodsSearch"></include>
+			  	   <include refid="goodsCategory"></include>
+			  	   <include refid="goodsOrder"></include>)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 상품 재고 목록 -->
+	<select id="selectOptionList" parameterType="integer" resultType="goodsOptionVO">
+		SELECT
+			*
+		FROM goods_option
+		WHERE goods_num=#{goods_num}
+	</select>
+	
+	<!-- 상품 정보 수정 -->
+	<update id="updateGoods" parameterType="goodsVO">
+		UPDATE 
+			goods
+		SET
+			<if test="goods_photo.length > 0">
+			goods_photo=#{goods_photo},
+			goods_photoname=#{goods_photoname},
+			</if>
+			goods_name=#{goods_name},
+			goods_price=#{goods_price},
+			goods_disc=#{goods_disc},
+			goods_dprice=#{goods_dprice},
+			goods_content=#{goods_content},
+			goods_mdate=SYSDATE,
+			goods_status=#{goods_status}
+		WHERE goods_num=#{goods_num}
+	</update>
+	
+	<!-- 상품 재고 수정 -->
+	<update id="updateOption" parameterType="goodsOptionVO">
+		UPDATE 
+			goods_option
+		SET
+			goods_stock=#{goods_stock}
+		WHERE goods_num=#{goods_num} AND goods_size=#{goods_size}
+	</update>
+	
+	<!-- //======찜 하기======// -->
+	<!-- 찜 목록 -->
+	<select id="selectGoodsFavList" parameterType="map" resultType="goodsFavVO">
+		SELECT 
+			*
+		FROM(SELECT 
+				a.*,
+				rownum rnum
+			 FROM(SELECT
+			 		f.fav_num,
+			 		f.goods_num,
+			 		g.goods_name,
+			 		f.mem_num,
+			 		m.mem_id
+			 	  FROM goods_fav f
+			 	  LEFT OUTER JOIN goods g ON f.goods_num=g.goods_num
+			 	  LEFT OUTER JOIN member m ON f.mem_num=m.mem_num
+			 	  WHERE f.mem_num=#{mem_num}
+			 	  ORDER BY fav_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 찜하기 레코드 수 -->
+	<select id="selectGoodsFavCountByMem_num" parameterType="map" resultType="integer">
+		SELECT
+			count(*)
+		FROM 
+			goods_fav f
+		LEFT OUTER JOIN goods g ON f.goods_num=g.goods_num
+		LEFT OUTER JOIN member m ON f.mem_num=m.mem_num
+		WHERE 
+			f.mem_num=#{mem_num}
+	</select>
+	
+	
+	<!-- //======리뷰======// -->
+	<!-- 리뷰 등록 -->
+	<insert id="insertGoodReview" parameterType="goodsReviewVO">
+		INSERT INTO 
+			goods_review(
+				review_num,
+				mem_num,
+				goods_num,
+				review_title,
+				review_score,
+				review_content,
+				review_photo,
+				review_photoname,
+				review_ip)
+		VALUES(
+			goods_review_seq.nextval,
+			#{mem_num},
+			#{goods_num},
+			#{review_title},
+			#{review_score},
+			#{review_content},
+			#{review_photo},
+			#{review_photoname},
+			#{review_ip})
+	</insert>
+	
+	<!-- 리뷰 레코드 수 -->
+	<select id="selectGreviewRowCount" parameterType="integer" resultType="integer">
+		SELECT 
+			count(*) 
+		FROM 
+			goods_review
+		WHERE goods_num=#{goods_num}
+	</select>
+	
+	<!-- 리뷰 목록 -->
+	<select id="selectGoodsReviewList" parameterType="map" resultType="goodsReviewVO">
+		SELECT 
+			*
+		FROM(SELECT
+				a.*,
+				rownum rnum
+			 FROM(SELECT
+			 		*
+			 	  FROM goods_review g JOIN member m
+			 	  ON g.mem_num=m.mem_num
+			 	  WHERE goods_num=#{goods_num}
+			 	  ORDER BY review_regdate DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 리뷰 상세 -->
+	<select id="selectGoodsReview" parameterType="integer" resultType="goodsReviewVO">
+		SELECT
+			*
+		FROM goods_review r JOIN member m USING(mem_num)
+		JOIN goods g USING(goods_num)
+		WHERE review_num=#{review_num}
+	</select>
+		
+	<!-- =====굿즈 문의===== -->
+	<!-- 문의 등록 -->
+	<insert id="insertGoodsQna" parameterType="goodsQnaVO">
+		INSERT INTO
+			goods_qna(
+				qna_num,
+				qna_title,
+				qna_content,
+				mem_num,
+				goods_num,
+				qna_ip)
+		VALUES(
+			goods_qna_seq.nextval,
+			#{qna_title},
+			#{qna_content},
+			#{mem_num},
+			#{goods_num},
+			#{qna_ip})
+	</insert>
+	
+	<!-- 문의 목록 -->
+	<select id="selectGoodsQnaList" parameterType="map" resultType="goodsQnaVO">
+		SELECT
+			*
+		FROM(SELECT
+				a.*,
+				rownum rnum
+			 FROM(SELECT
+			 		*
+			 	  FROM goods_qna q JOIN member m
+			 	  ON q.mem_num=m.mem_num
+			 	  WHERE goods_num=#{goods_num}
+			 	  ORDER BY qna_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 문의 상세페이지 -->
+	<select id="selectQna" parameterType="integer" resultType="goodsQnaVO">
+		SELECT
+			*
+		FROM goods_qna q JOIN member m USING(mem_num)
+		JOIN goods g USING(goods_num)
+		WHERE q.qna_num=#{qna_num}
+	</select>
+	
+	<!-- =====굿즈 문의 답변===== -->
+	
+	<!-- 답변 등록 -->
+	<insert id="insertGoodsAnswer" parameterType="goodsAnswerVO">
+		INSERT INTO goods_answer(
+			gans_num,
+			gans_content,
+			mem_num,
+			qna_num)
+		VALUES(
+			goods_answer_seq.nextval,
+			#{gans_content},
+			#{mem_num},
+			#{qna_num})
+	</insert>
+	
+	<!-- 답변 목록 -->
+	<select id="selectListGoodsAnswer" parameterType="map" resultType="goodsAnswerVO">
+		SELECT
+			*
+		FROM(SELECT
+				a.*,
+				rownum rnum
+			 FROM(SELECT
+			 		gans_num,
+			 		<![CDATA[
+			  		REPLACE(REPLACE(gans_content, '<', '&lt;'), '>', '&gt;') gans_content,
+			  		]]>
+			  		gans_regdate,
+			  		gans_mdate,
+			  		qna_num,
+			  		mem_num,
+			  		mem_id
+			  	  FROM goods_answer
+			  	  JOIN member USING (mem_num)
+			  	  WHERE qna_num=#{qna_num}
+			  	  ORDER BY gans_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+</mapper>

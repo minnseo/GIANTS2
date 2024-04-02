@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 아래 설정을 상황에 맞게 수정해서 사용하세요 -->
+	
+	<!-- 굿즈 -->
+	<definition name="goodsList" extends="main">
+		<put-attribute name="title" value="굿즈목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsList.jsp"/>
+	</definition>
+		
+	<definition name="goodsRegister" extends="main">
+		<put-attribute name="title" value="굿즈등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsRegister.jsp"/>
+	</definition>
+	
+	<definition name="goodsView" extends="main">
+		<put-attribute name="title" value="굿즈상세페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsView.jsp"/>
+	</definition>
+	
+	<definition name="goodsModify" extends="main">
+		<put-attribute name="title" value="굿즈수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsModify.jsp"/>
+	</definition>
+	
+	<!-- 굿즈리뷰 -->
+	<definition name="reviewWrite" extends="main">
+		<put-attribute name="title" value="굿즈리뷰작성"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/reviewWrite.jsp"/>
+	</definition>
+	
+	<definition name="reviewModify" extends="main">
+		<put-attribute name="title" value="굿즈리뷰작성"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/reviewModify.jsp"/>
+	</definition>
+	
+	
+	<!-- 굿즈문의 -->
+	<definition name="qnaWrite" extends="main">
+		<put-attribute name="title" value="굿즈문의작성"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/qnaWrite.jsp"/>
+	</definition>
+	
+	<definition name="goodsQnaView" extends="main">
+		<put-attribute name="title" value="굿즈문의보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsQnaView.jsp"/>
+	</definition>
+	
+	<definition name="goodsQnaModify" extends="main">
+		<put-attribute name="title" value="굿즈문의수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsQnaModify.jsp"/>
+	</definition>
+	
+	<!-- 구단뉴스 -->
+	<definition name="newsList" extends="main">
+		<put-attribute name="title" value="자이언츠 뉴스 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/news/newsList.jsp"/>
+	</definition>
+	
+	<definition name="newsWrite" extends="main">
+		<put-attribute name="title" value="뉴스 등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/news/newsWrite.jsp"/>
+	</definition>
+	
+	<definition name="newsView" extends="main">
+		<put-attribute name="title" value="뉴스상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/news/newsView.jsp"/>
+	</definition>
+	
+	<definition name="newsModify" extends="main">
+		<put-attribute name="title" value="뉴스상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/news/newsModify.jsp"/>
+	</definition>
+	
+	<!-- 굿즈 찜하기 목록 -->
+	<definition name="goodsFavList" extends="myPage">
+		<put-attribute name="title" value="찜한 상품"/>
+		<put-attribute name="body" value="/WEB-INF/views/goods/goodsFavList.jsp"/>
+	</definition>
+	
+</tiles-definitions>

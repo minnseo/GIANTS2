@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.ticket.dao.TicketMapper">
+	<resultMap type="seatVO" id="seatMap">
+		<result property="seatVO.quantity" column="quantity"/>
+	</resultMap>
+
+	<!-- [경기]등록 -->
+	<insert id="insertGame" parameterType="gameVO">
+		INSERT INTO tgame (game_num, game_date, game_time, game_team, game_week)
+			   VALUES (tgame_seq.nextval, #{game_date}, #{game_time}, #{game_team}, #{game_week})
+	</insert>
+	
+	<!-- [등급]등록 -->
+	<insert id="insertGrade" parameterType="gradeVO">
+		INSERT INTO grade (grade_num, title, price_week, price_weekend)
+			   VALUES (grade_seq.nextval, #{title}, #{price_week}, #{price_weekend})
+	</insert>
+	
+	<!-- [좌석]등록 -->
+	<insert id="insertSeat" parameterType="seatVO">
+		INSERT INTO seat (seat_num, grade_num, seat_block, seat_row, seat_col, seat_quantity)
+			   VALUES (seat_seq.nextval, #{grade_num}, #{seat_block}, #{seat_row}, #{seat_col}, #{seat_quantity})
+	</insert>
+	
+	<insert id="insertTicket" parameterType="ticketVO">
+		INSERT INTO ticket (ticket_num, mem_num, game_num, status_num, order_name, order_phone, order_email, game_title, game_date, game_time, ticket_quantity, total_price, pg, pay_method, qrlink)
+			   VALUES (#{ticket_num}, #{mem_num}, #{game_num}, #{status_num}, #{order_name}, #{order_phone}, #{order_email}, #{game_title}, #{game_date}, #{game_time}, #{ticket_quantity}, #{total_price}, #{pg}, #{pay_method}, #{qrlink})
+	</insert>
+	
+</mapper>

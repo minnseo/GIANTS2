@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="ticket" extends="main">
+		<put-attribute name="title" value="요금안내"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/ticket.jsp"/>
+	</definition>
+	
+	<!-- [Grade] -->
+	<definition name="gradeList" extends="myPage">
+		<put-attribute name="title" value="좌석관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/gradeList.jsp"/>
+	</definition>
+	
+	<definition name="seatList" extends="myPage">
+		<put-attribute name="title" value="등급상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/seatList.jsp"/>
+	</definition>
+	
+	<definition name="seatEditForm" extends="myPage">
+		<put-attribute name="title" value="좌석상태관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/seatEdit.jsp"/>
+	</definition>
+	
+	<definition name="gradeWrite" extends="myPage">
+		<put-attribute name="title" value="등급등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/gradeWrite.jsp"/>
+	</definition>
+	
+	<definition name="gradeUpdate" extends="myPage">
+		<put-attribute name="title" value="등급수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/gradeUpdate.jsp"/>
+	</definition>
+	
+	<!-- [Game] -->
+	<definition name="gameWrite" extends="main">
+		<put-attribute name="title" value="경기등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/gameWrite.jsp"/>
+	</definition>
+	
+	<definition name="gameList" extends="main">
+		<put-attribute name="title" value="경기선택"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/gameList.jsp"/>
+	</definition>
+	
+	<definition name="gameUpdate" extends="main">
+		<put-attribute name="title" value="경기수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/gameUpdate.jsp"/>
+	</definition>
+	
+	<!-- [Ticket] -->
+	<definition name="ticketMain" extends="main">
+		<put-attribute name="title" value="좌석선택"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/ticketMain.jsp"/>
+	</definition>
+	
+	<definition name="ticketOrderForm" extends="main">
+		<put-attribute name="title" value="좌석선택"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/ticketCheck.jsp"/>
+	</definition>
+
+	<definition name="ticketReserved" extends="main">
+		<put-attribute name="title" value="결제완료"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/ticketReserved.jsp"/>
+	</definition>
+
+	<definition name="ticketInfo" extends="myPage">
+		<put-attribute name="title" value="티켓정보"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/ticketInfo.jsp"/>
+	</definition>
+	
+	<!-- QR체크용 -->
+	<definition name="afterCheckQR" extends="myPage">
+		<put-attribute name="title" value="QR코드 출력"/>
+		<put-attribute name="body" value="/WEB-INF/views/ticket/afterCheckQR.jsp"/>
+	</definition>
+	
+</tiles-definitions>

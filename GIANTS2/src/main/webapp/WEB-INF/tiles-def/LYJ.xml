@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+   <!-- 굿즈 주문 -->
+   
+   <definition name="goods_cart" extends="main">
+      <put-attribute name="title" value="굿즈 - 장바구니"/>
+      <put-attribute name="body" value="/WEB-INF/views/gorder/goods_cart.jsp"/>
+   </definition>
+   
+   <definition name="orderForm" extends="main">
+      <put-attribute name="title" value="굿즈 - 주문폼"/>
+      <put-attribute name="body" value="/WEB-INF/views/gorder/orderForm.jsp"/>
+   </definition> 
+   
+   <definition name="orderFormDirect" extends="main">
+      <put-attribute name="title" value="굿즈 - 바로구매폼"/>
+      <put-attribute name="body" value="/WEB-INF/views/gorder/orderFormDirect.jsp"/>
+   </definition> 
+   
+   <!-- 그 외 --> 
+   <!-- 사용자 -->
+    <definition name="orderList" extends="memberMypageGoodList">
+       <put-attribute name="title" value="주문목록"/>
+       <put-attribute name="body" value="/WEB-INF/views/gorder/user_orderList.jsp"/>
+    </definition>
+    <definition name="orderDetail" extends="myPage">
+       <put-attribute name="title" value="주문내역"/>
+       <put-attribute name="body" value="/WEB-INF/views/gorder/user_detail.jsp"/>
+    </definition>
+    <definition name="orderModify" extends="myPage">
+       <put-attribute name="title" value="주문수정"/>
+       <put-attribute name="body" value="/WEB-INF/views/gorder/user_modifyForm.jsp"/>
+    </definition>
+    <!-- 매출관리 -->   
+   <definition name="adminMypageSaleDetail" extends="main"> 
+      <put-attribute name="title" value="매출상세"/>
+      <put-attribute name="body" value="/WEB-INF/views/gorder/adminMypageSaleManage.jsp"/>
+   </definition>   
+    
+   
+   
+   
+   
+</tiles-definitions> 

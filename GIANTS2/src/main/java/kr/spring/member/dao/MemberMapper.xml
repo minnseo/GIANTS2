@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.member.dao.MemberMapper">
+	<!-- 수동 매핑 지정 (일반) --> 
+	<resultMap type="memberVO" id="memberMap">
+		<result property="memberDetailVO.mem_auid" column="mem_auid" />
+		<result property="memberDetailVO.mem_name" column="mem_name" />
+		<result property="memberDetailVO.mem_public" column="mem_public" />
+		<result property="memberDetailVO.mem_phone" column="mem_phone" />
+		<result property="memberDetailVO.mem_email" column="mem_email" />
+		<result property="memberDetailVO.mem_zipcode" column="mem_zipcode" />
+		<result property="memberDetailVO.mem_address1" column="mem_address1" />
+		<result property="memberDetailVO.mem_address2" column="mem_address2" />
+		<result property="memberDetailVO.mem_photo" column="mem_photo" />
+		<result property="memberDetailVO.mem_photoname" column="mem_photoname" />
+		<result property="memberDetailVO.mem_point" column="mem_point" />
+		<result property="memberDetailVO.mem_regdate" column="mem_regdate" />
+		<result property="memberDetailVO.mem_modifydate" column="mem_modifydate" />
+	</resultMap>
+	<resultMap type="memberVO" id="companyMap">
+		<result property="companyDetailVO.comp_num" column="comp_num" />  
+		<result property="companyDetailVO.comp_owner" column="comp_owner" />
+		<result property="companyDetailVO.comp_name" column="comp_name" />
+		<result property="companyDetailVO.comp_cate" column="comp_cate" />
+		<result property="companyDetailVO.comp_phone" column="comp_phone" />
+		<result property="companyDetailVO.comp_email" column="comp_email" />
+		<result property="companyDetailVO.comp_zipcode" column="comp_zipcode" />
+		<result property="companyDetailVO.comp_address1" column="comp_address1" />
+		<result property="companyDetailVO.comp_address2" column="comp_address2" />
+		<result property="companyDetailVO.comp_photo" column="comp_photo" />
+		<result property="companyDetailVO.comp_photoname" column="comp_photoname" />
+		<result property="companyDetailVO.comp_regdate" column="comp_regdate" />
+		<result property="companyDetailVO.comp_modifydate" column="comp_modifydate" />
+		<result property="companyDetailVO.comp_content" column="comp_content" />
+	</resultMap>
+	
+	<!-- 일반 회원가입 --> 
+	<insert id="insertMember_detail" parameterType="memberVO">
+		INSERT INTO MEMBER_DETAIL(
+			mem_num,
+			mem_name,
+			mem_public,
+			mem_phone,
+			mem_email,
+			mem_zipcode,
+			mem_address1,
+			mem_address2,
+			mem_point
+		)
+		VALUES(
+			#{mem_num},
+			#{memberDetailVO.mem_name},
+			#{memberDetailVO.mem_public},
+			#{memberDetailVO.mem_phone},
+			#{memberDetailVO.mem_email},
+			#{memberDetailVO.mem_zipcode},
+			#{memberDetailVO.mem_address1},
+			#{memberDetailVO.mem_address2},
+			#{memberDetailVO.mem_point}
+		)
+	</insert>
+	
+	<!-- 기업회원가입 -->
+	<insert id="insertCompany_detail" parameterType="memberVO">
+	INSERT INTO COMPANY_DETAIL(
+		mem_num,
+		comp_owner,
+		comp_num,
+		comp_name,
+		comp_phone,
+		comp_cate,
+		comp_email,
+		comp_zipcode,
+		comp_address1,
+		comp_address2,
+		comp_content
+	)
+	VALUES(
+		#{mem_num},
+		#{companyDetailVO.comp_owner},
+		#{companyDetailVO.comp_num},
+		#{companyDetailVO.comp_name},
+		#{companyDetailVO.comp_phone},
+		#{companyDetailVO.comp_cate},
+		#{companyDetailVO.comp_email},
+		#{companyDetailVO.comp_zipcode},
+		#{companyDetailVO.comp_address1},
+		#{companyDetailVO.comp_address2},
+		#{companyDetailVO.comp_content}
+	)	
+	</insert>
+	
+	<!-- ID를 이용한 일반회원정보 체크 -->
+	<select id="selectCheckMember" parameterType="string" resultType="memberVO">
+		SELECT
+			mem_num,
+			mem_id,
+			mem_auth,
+			au_id,
+			passwd,
+			mem_nickname
+		FROM
+			MEMBER
+		WHERE
+			mem_id=#{mem_id}
+	</select>
+	
+	<!-- NK를 이용한 일반회원정보 체크 -->
+	<select id="selectCheckMemberNk" parameterType="string" resultType="memberVO">
+		SELECT
+			mem_num,
+			mem_id,
+			mem_auth,
+			au_id,
+			passwd,
+			mem_nickname
+		FROM
+			MEMBER
+		WHERE
+			mem_nickname=#{mem_nickname}
+	</select>
+	
+	<!-- 회원번호를 이용한 회원정보 구하기 -->
+	<select id="selectMember" parameterType="integer" resultMap="memberMap">
+		SELECT
+			*
+		FROM
+			MEMBER m JOIN MEMBER_DETAIL d
+		ON
+			m.mem_num=d.mem_num
+		WHERE
+			m.mem_num=#{mem_num}
+	</select>
+	<!-- 아이디찾기 (일반) -->
+	<select id="findMemberId" parameterType="string" resultMap="memberMap">
+		SELECT
+			*
+		FROM
+			MEMBER m JOIN MEMBER_DETAIL d
+		ON
+			m.mem_num = d.mem_num
+		WHERE
+			d.mem_name=#{mem_name} AND d.mem_phone=#{mem_phone}
+	</select>
+	
+	<!-- 아이디찾기 (기업) -->
+	<select id="findCompanyId" parameterType="string" resultMap="companyMap">
+		SELECT
+			*
+		FROM
+			MEMBER m JOIN COMPANY_DETAIL c
+		ON
+			m.mem_num = c.mem_num
+		WHERE
+			c.comp_owner=#{comp_owner} AND c.comp_phone=#{comp_phone}
+	</select>
+	
+	<!-- 비밀번호찾기 (일반) -->
+	<select id="findMemberPw" parameterType="string" resultMap="memberMap">
+		SELECT
+			*
+		FROM
+			MEMBER m JOIN MEMBER_DETAIL d
+		ON
+			m.mem_num = d.mem_num
+		WHERE
+			m.mem_id=#{mem_id} AND d.mem_name=#{mem_name} AND d.mem_phone=#{mem_phone} AND d.mem_email=#{mem_email}
+	</select>
+	
+	
+	<!-- 비밀번호찾기 (기업) -->
+	<select id="findCompanyPw" parameterType="string" resultMap="companyMap">
+		SELECT
+			*
+		FROM
+			MEMBER m JOIN COMPANY_DETAIL c
+		ON
+			m.mem_num = c.mem_num
+		WHERE
+			m.mem_id=#{mem_id} AND c.comp_owner=#{comp_owner} AND c.comp_phone=#{comp_phone} AND c.comp_email=#{comp_email}
+	</select>
+	
+	<!-- 기업번호를 이용한 회원정보 구하기 -->
+	<select id="selectCompany" parameterType="integer" resultMap="companyMap">
+		SELECT 
+			*
+		FROM
+			MEMBER m JOIN COMPANY_DETAIL c
+		ON
+			m.mem_num=c.mem_num
+		WHERE
+			m.mem_num=#{mem_num}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember_detail" parameterType="memberVO">
+		UPDATE
+			MEMBER_DETAIL
+		SET
+			mem_name=#{memberDetailVO.mem_name},
+			mem_public=#{memberDetailVO.mem_public},
+			mem_phone=#{memberDetailVO.mem_phone},
+			mem_email=#{memberDetailVO.mem_email},
+			mem_zipcode=#{memberDetailVO.mem_zipcode},
+			mem_address1=#{memberDetailVO.mem_address1},
+			mem_address2=#{memberDetailVO.mem_address2},
+			mem_modifydate=sysdate
+		WHERE
+			mem_num=#{mem_num}
+	</update>
+	
+	<!-- 기업정보수정 -->
+	<update id="updateCompany_detail" parameterType="memberVO">
+		UPDATE
+			COMPANY_DETAIL
+		SET
+			comp_owner=#{companyDetailVO.comp_owner},
+			comp_name=#{companyDetailVO.comp_name},
+			comp_cate=#{companyDetailVO.comp_cate},
+			comp_phone=#{companyDetailVO.comp_phone},
+			comp_email=#{companyDetailVO.comp_email},
+			comp_zipcode=#{companyDetailVO.comp_zipcode},
+			comp_address1=#{companyDetailVO.comp_address1},
+			comp_address2=#{companyDetailVO.comp_address2},
+			comp_content=#{companyDetailVO.comp_content},
+			comp_modifydate=sysdate
+		WHERE
+			mem_num=#{mem_num}
+	</update>
+	
+	<!-- 관리자 회원목록 -->
+	<!-- sql태그와 include태그를 이용해서 SQL문을 재사용 -->
+	<sql id="memberSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+					AND m.mem_id LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2">
+					AND d.mem_name LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 3">	
+					AND d.mem_email LIKE '%' || #{keyword} || '%' or
+					c.comp_email LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 전체/검색 레코드 수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT
+			COUNT(*)
+		FROM
+			MEMBER m 
+		LEFT OUTER JOIN MEMBER_DETAIL d
+		ON m.mem_num = d.mem_num
+		LEFT OUTER JOIN COMPANY_DETAIL c
+		ON m.mem_num = c.mem_num
+		<include refid="memberSearch"></include>
+	</select>
+	
+	<!-- 전체/검색 목록 -->
+	<select id="selectList" parameterType="map" resultType="memberVO">
+		SELECT
+			*
+		FROM
+			(SELECT 
+				a.*, rownum rnum
+			FROM
+				(SELECT
+					*
+				FROM
+					MEMBER m 
+				LEFT OUTER JOIN MEMBER_DETAIL d
+				ON m.mem_num = d.mem_num
+				LEFT OUTER JOIN COMPANY_DETAIL c
+				ON m.mem_num = c.mem_num
+				<include refid="memberSearch"></include>
+				ORDER BY
+					d.mem_regdate DESC NULLS LAST
+				)a
+			)
+		<![CDATA[
+		WHERE
+			rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPw" parameterType="map" resultType="memberVO">
+		SELECT
+			*
+		FROM
+		    MEMBER m 
+		LEFT OUTER JOIN MEMBER_DETAIL d
+			ON m.mem_num = d.mem_num
+		LEFT OUTER JOIN COMPANY_DETAIL c
+			ON m.mem_num = c.mem_num
+		WHERE
+			mem_id=#{mem_id} AND
+			mem_name=#{mem_name} AND
+			mem_phone=#{mem_phone} AND
+			mem_email=#{mem_email}
+			mem_modifydate=SYSDATE
+		OR
+			mem_id=#{mem_id} AND
+			comp_owner=#{comp_owner} AND
+			comp_phone=#{comp_phone} AND
+			comp_email=#{comp_email}
+			comp_modifydate=SYSDATE
+	</select>
+	
+	<update id="changePw" parameterType="memberVO">
+		UPDATE
+			MEMBER
+		SET
+			passwd=#{new_passwd}
+		WHERE
+			mem_num=#{mem_num}
+	</update>
+	
+	<!-- 매장 상세정보 쿼리 -->
+	<select id="selectCompCp" parameterType="string" resultType="companyDetailVO">
+		SELECT 
+		  c.comp_num, 
+		  comp_name, 
+		  comp_photo, 
+		  comp_photoname, 
+		  comp_content, 
+		  comp_cate, 
+		  comp_score
+        FROM company_detail c
+        LEFT OUTER JOIN (SELECT c.comp_num as comp_num, round(avg(comp_score),2) as comp_score
+                         FROM company_detail c JOIN food_review r
+                         ON c.comp_num=r.comp_num
+                         WHERE c.comp_num=#{comp_num}
+                         GROUP BY c.comp_num) r
+        ON c.comp_num=r.comp_num
+        WHERE c.comp_num=#{comp_num}
+	</select>
+	<!-- 식품목록 레코드수 쿼리 -->
+	<select id="selectRowCountCp" parameterType="string" resultType="integer">
+		SELECT
+		  COUNT(*)
+		FROM food
+		WHERE comp_num=#{comp_num}
+	</select>
+	<!-- 식품목록 리스트 페이징 쿼리 -->
+	<select id="selectListCp" parameterType="map" resultType="foodVO">
+		SELECT
+		  *
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM (SELECT
+			  		  *
+			  		FROM food
+			  		WHERE comp_num=#{comp_num}
+			  		ORDER BY food_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 관리자 굿즈목록 -->
+	<sql id="goodsSearch">
+		<![CDATA[
+			WHERE goods_status < #{goods_status}
+		]]>
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				AND goods_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 2">
+				AND goods_content LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 3">
+				AND (goods_name LIKE '%' || #{keyword} || '%' OR goods_content LIKE '%' || #{keyword} || '%') 
+			</if>
+		</if>
+	</sql>
+	<sql id="goodsOrder">
+		<if test="order == 1">
+			ORDER BY goods_regdate DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY f.fav_cnt ASC
+		</if>
+		<if test="order == 3">
+			ORDER BY r.re_cnt ASC
+		</if>
+		<if test="order == 4">
+			ORDER BY goods_disc DESC
+		</if>
+		<if test="order == 5">
+			ORDER BY goods_dprice ASC
+		</if>
+	</sql>	
+	<sql id="goodsCategory">
+		<if test="goods_category == 0">
+			AND goods_category BETWEEN 1 AND 4
+		</if>
+		<if test="goods_category == 1">
+			AND goods_category = 1
+		</if>
+		<if test="goods_category == 2">
+			AND goods_category = 2
+		</if>
+		<if test="goods_category == 3">
+			AND goods_category = 3
+		</if>
+		<if test="goods_category == 4">
+			AND goods_category = 4
+		</if>
+	</sql>
+	<!-- 전체/검색 레코드 수 -->
+	<select id="selectGoodsRowCount" parameterType="map" resultType="integer">
+		SELECT 
+			count(*) 
+		FROM goods g
+		LEFT OUTER JOIN (SELECT count(*) fav_cnt, goods_num FROM goods_fav GROUP BY goods_num)f ON g.goods_num=f.goods_num
+		LEFT OUTER JOIN (SELECT count(*) re_cnt, goods_num FROM goods_review GROUP BY goods_num)r ON g.goods_num=r.goods_num
+		<include refid="goodsSearch"></include>
+		<include refid="goodsCategory"></include>
+	</select>	
+	<!-- 전체/검색 목록 -->
+	<select id="selectGoodsList" parameterType="map" resultType="goodsVO">
+		SELECT
+			*
+		FROM (SELECT
+				a.*,
+				rownum rnum
+			  FROM(SELECT
+			  			g.goods_num,
+			  			g.goods_name,
+			  			g.goods_dprice,
+			  			f.fav_cnt,
+			  			r.re_cnt,
+			  			g.goods_category,
+			  			g.goods_regdate,
+			  			g.goods_status
+			  	   FROM goods g
+			  	   LEFT OUTER JOIN (SELECT count(*) fav_cnt, goods_num FROM goods_fav GROUP BY goods_num)f ON g.goods_num=f.goods_num
+			  	   LEFT OUTER JOIN (SELECT count(*) re_cnt, goods_num FROM goods_review GROUP BY goods_num)r ON g.goods_num=r.goods_num
+			  	   <include refid="goodsSearch"></include>
+			  	   <include refid="goodsCategory"></include>
+			  	   <include refid="goodsOrder"></include>)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>	
+	
+	<!-- 기업페이지 주문목록 -->
+	<sql id="orderSearchFd">
+	WHERE comp_num = #{comp_num}
+		<if test="keyword!=null and keyword != ''">
+			<if test="keyfield == 1">
+				AND f_order_num=#{keyword}
+			</if>
+			<if test="keyfield == 2">
+				AND f_order_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 3">
+				AND buyer_name LIKE '%' || #{keyword} || '%'
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectOrderCountFd" parameterType="map" resultType="integer">
+		SELECT
+			count(*)
+		FROM 
+			F_ORDER f LEFT JOIN MEMBER m
+			ON f.mem_num = m.mem_num
+		<include refid="orderSearchFd"></include>
+	</select>
+	
+	<select id="selectListOrderFd" parameterType="map" resultType="f_orderVO">
+		SELECT
+			*
+		FROM
+			(SELECT a.*, rownum rnum
+				FROM
+					(SELECT
+						*
+					FROM F_ORDER f JOIN MEMBER m
+					ON f.mem_num = m.mem_num
+					<include refid="orderSearchFd"></include>
+					ORDER BY f_order_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	
+	<!-- 일반회원 푸드 구매내역 -->
+	<sql id="orderSearchByUser">
+		WHERE mem_num = #{mem_num}
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				AND f_order_num=#{keyword}
+			</if>
+			<if test="keyfield == 2">
+				AND f_order_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 3">
+				AND buyer_name LIKE '%' || #{keyword} || '%'
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectOrderCountByMem_num" parameterType="map">
+		SELECT
+			count(*)
+		FROM 
+			F_ORDER 
+		<include refid="orderSearchByUser"></include>
+	</select>
+	
+	<select id="selectListOrderByMem_num" parameterType="map"
+	                                           resultType="F_orderVO">
+		SELECT
+		  *	
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM (SELECT
+		              *
+		            FROM F_ORDER
+		            <include refid="orderSearchByUser"></include>
+		            ORDER BY f_order_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>		            
+	</select>
+	
+	<!-- 일반회원 티켓 구매내역 -->
+	<sql id="ticketSearchByUser">
+		WHERE mem_num = #{mem_num}
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				AND game_title LIKE '%' || #{keyword} || '%'
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectTicketCountByMem_num" parameterType="map">
+		SELECT count(*)
+		FROM ticket 
+		<include refid="ticketSearchByUser"></include>
+	</select>
+	
+	<select id="selectListTicketByMem_num" parameterType="map" resultType="ticketVO">
+		SELECT *	
+		FROM (SELECT a.*, rownum rnum
+		      FROM (SELECT *
+		            FROM ticket
+		            <include refid="ticketSearchByUser"></include>
+		            ORDER BY game_date DESC)a)
+		<![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>		            
+	</select>
+	
+	<!-- 관리자 티켓 구매내역 -->
+	<sql id="ticketSearchByAdmin">
+		<if test="keyword != null and keyword != ''">
+			<if test="keyfield == 1">
+				WHERE game_title LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 2">
+				WHERE order_name LIKE '%' || #{keyword} || '%'
+			</if>
+			<if test="keyfield == 3">
+				WHERE game_date LIKE '%' || #{keyword} || '%'
+			</if>
+		</if>
+	</sql>
+	
+	<select id="selectAdminTicketCount" parameterType="map">
+		SELECT count(*)
+		FROM ticket 
+		<include refid="ticketSearchByAdmin"></include>
+	</select>
+	
+	<select id="selectAdminListTicket" parameterType="map" resultType="ticketVO">
+		SELECT *	
+		FROM (SELECT a.*, rownum rnum
+		      FROM (SELECT *
+		            FROM ticket
+		            <include refid="ticketSearchByAdmin"></include>
+		            ORDER BY game_date DESC)a)
+		<![CDATA[WHERE rnum >= #{start} AND rnum <= #{end}]]>		            
+	</select>
+	
+	<!-- 주문 상세정보확인 -->
+	<select id="selectF_order" parameterType="map" resultType="f_orderVO">
+		SELECT 
+		  * 
+		FROM 
+		  f_order 
+		WHERE f_order_num=#{f_order_num} 
+		AND mem_num=#{mem_num}
+	</select>	
+	<!-- 주문 상세정보확인 -->
+	<select id="selectF_orderCp" parameterType="map" resultType="f_orderVO">
+		SELECT 
+		  * 
+		FROM 
+		  f_order 
+		WHERE f_order_num=#{f_order_num} 
+	</select>	
+</mapper>

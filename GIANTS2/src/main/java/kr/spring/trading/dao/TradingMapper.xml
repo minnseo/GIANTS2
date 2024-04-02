@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.trading.dao.TradingMapper">
+	<!-- 글쓰기 -->
+	<insert id="insertTrading" parameterType="TradingVO">
+		INSERT INTO trading(
+		 trade_num,
+		 trade_title,
+		 trade_content,
+		 trade_price,
+		 trade_photo,
+		 trade_photoname, 
+		 trade_ip,
+		 trade_status,
+		 mem_num)
+		VALUES(
+		 trading_seq.nextval,
+		 #{trade_title},
+		 #{trade_content},
+		 #{trade_price},
+		 #{trade_photo},
+		 #{trade_photoname},
+		 #{trade_ip},
+		 #{trade_status},
+		 #{mem_num}
+		)
+	</insert>
+	
+	<!-- 게시판 목록 -->
+	<sql id="tradingSearch">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				<if test="keyfield == 1">
+					t.trade_title LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 2">
+					m.mem_id LIKE '%' || #{keyword} || '%' or
+					m.mem_nickname LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 3">
+					t.trade_content LIKE '%' || #{keyword} || '%'
+				</if>
+				<if test="keyfield == 4">
+					t.trade_title LIKE '%' || #{keyword} || '%' or
+					t.trade_content LIKE '%' || #{keyword} || '%'
+				</if>
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="tradingOrder">
+		<if test="order == 1">
+			ORDER BY t.trade_num DESC
+		</if>
+		<if test="order == 2">
+			ORDER BY t.trade_hit DESC
+		</if>
+		<if test="order == 3">
+			ORDER BY mark_cnt DESC
+		</if>
+		<if test="order == 4">
+			WHERE trade_status=0
+		</if>
+	</sql>
+	
+	<!-- 전체/검색 레코드 수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM trading t JOIN member m ON t.mem_num = m.mem_num
+		<include refid="tradingSearch"></include>
+	</select>
+	
+	<!-- 전체/검색 목록 -->
+	<select id="selectList" parameterType="map" resultType="tradingVO">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM(SELECT * FROM trading t JOIN member m ON t.mem_num = m.mem_num
+		LEFT OUTER JOIN (SELECT COUNT(*) mark_cnt, trade_num FROM bookmark GROUP BY trade_num) b ON t.trade_num = b.trade_num 
+		<include refid="tradingSearch"></include>
+		<include refid="tradingOrder"></include>)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 게시글 상세 -->
+	<select id="selectTrading" parameterType="integer">
+		SELECT * FROM trading t JOIN member m USING(mem_num) WHERE t.trade_num=#{trade_num}
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateTrading" parameterType="TradingVO">
+		UPDATE 
+			trading
+		SET
+			<if test="trade_photo.length > 0">
+			trade_photo=#{trade_photo},
+			trade_photoname=#{trade_photoname},
+			</if>
+			trade_title=#{trade_title},
+			trade_content=#{trade_content},
+			trade_price=#{trade_price},
+			trade_ip=#{trade_ip},
+			trade_status=#{trade_status},
+			trade_modifydate=SYSDATE
+		WHERE trade_num=#{trade_num}
+	</update>
+		
+	<!-- 회원별 북마크 레코드 수 -->
+	<select id="selectBookmarkRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM bookmark WHERE mem_num=#{mem_num}
+	</select>
+	
+	<!-- 회원별 북마크 목록 -->
+	<select id="selectTradingBookmarkList" parameterType="map" resultType="tradingVO">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM(SELECT * FROM trading t JOIN member m ON t.mem_num = m.mem_num WHERE trade_num IN (SELECT trade_num FROM bookmark WHERE mem_num=#{mem_num})
+						 ORDER BY trade_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+</mapper>

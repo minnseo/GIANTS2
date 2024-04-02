@@ -1,0 +1,87 @@
+@charset "UTF-8";
+.annot{
+	font-size: 13px;
+	color : gray;
+	text-align: center;
+	margin-left: 930px;
+}
+.em-highlight {
+  font-weight: bold; /* 볼드체로 */
+  font-size: 27px; /* 크게 */
+  font-style: normal; /* 이탤릭체 해제 */
+  text-align: center;
+}
+
+.em-highlight-result {
+ color : #dd032f;
+  font-weight: bold; /* 볼드체로 */
+  font-size: 27px; /* 크게 */
+  font-style: normal; /* 이탤릭체 해제 */
+  text-align: center;
+}
+
+th{
+	background-color: #f5f5f5;
+}
+.option-tr{
+background-color: #f5f5f5;
+}
+
+input[type="text"], input[type="email"] {
+	width: 15%;
+	padding: 4px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+input[type="text"]:focus {
+	outline: none !important;
+	border-color: #052345;
+	box-shadow: 0 0 10px #052345;
+}
+
+input[type="email"]:focus {
+	outline: none !important;
+	border-color: #052345;
+	box-shadow: 0 0 10px #052345;
+}
+
+
+.order-info {
+    display: flex; /* Flexbox를 사용하여 가로 정렬 설정 */
+    justify-content: space-between; /* 요소들을 공간을 최대한 활용하여 가로로 배치 */
+    align-items: center; /* 요소들을 수직으로 중앙 정렬 */
+    text-align: center;
+    border:3px solid; 
+    padding:40px; 
+  }
+
+#operator{
+	margin-left: 50px;
+}
+
+form {
+	margin: 0 auto;
+	padding: 10px 10px 10px 30px;
+	align-items: center;
+	justify-content: center;
+}
+
+form ul li {
+	clear: both;
+}
+
+ul {
+	list-style: none;
+}
+
+label {
+	width: 130px;
+	float: left; /*태그를 왼쪽에 정렬*/
+}
+
+input {
+	margin-top: 4px;
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.chat.dao.ChatMapper">
+	<!-- 채팅 멤버 읽기 -->
+	<select id="selectChatMember" parameterType="integer" resultType="chatRoomVO">
+		SELECT * FROM chatroom WHERE chatroom_num=#{chatroom_num}
+	</select>
+	
+	<!-- 채팅 메시지 등록-->
+	<insert id="insertChat" parameterType="chatVO">
+		INSERT INTO chat(
+			chat_num,
+			chatroom_num,
+			mem_num,
+			message
+			)
+		VALUES(
+			#{chat_num},
+			#{chatroom_num},
+			#{mem_num},
+			#{message}
+			)
+	</insert>
+	
+	<!-- 채팅 메시지 읽기 -->
+	<select id="selectChatDetail" parameterType="integer" resultType="chatVO">
+		SELECT 
+			<![CDATA[
+			REPLACE(REPLACE(message,'<','&lt;'),'>','&gt;') message,
+			]]> /*html 불허*/
+			chat_date,
+			read_count,
+			mem_num,
+			mem_id,
+			mem_nickname 
+		FROM chat 
+			 LEFT OUTER JOIN (SELECT chat_num, COUNT(*) read_count 
+							  FROM chat_read GROUP BY chat_num)
+			  USING (chat_num) 
+			 JOIN member
+			  USING (mem_num)
+		WHERE chatroom_num = #{chatroom_num}
+		ORDER BY chat_date ASC
+	</select>
+
+	<resultMap type="chatRoomVO" id="chatMap">
+		<result property="chatVO.message" column="message"/>
+		<result property="chatVO.chat_date" column="chat_date"/>
+	</resultMap>
+ 	
+	<!-- 채팅방 레코드 수 -->
+	<select id="selectRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM chatroom WHERE seller_num=#{seller_num} OR buyer_num=#{buyer_num}
+	</select>
+	
+	<!-- 채팅방 목록 / Max(chat_num) = 최신 메시지 -->
+	<select id="selectChatRoomList" parameterType="map" resultMap="chatMap"> 
+		SELECT * FROM (SELECT a.*, rownum rnum FROM(SELECT * FROM chatroom r
+				LEFT OUTER JOIN trading USING (trade_num) 
+		        LEFT OUTER JOIN (SELECT chatroom_num, mem_num, COUNT(*) room_cnt FROM chat_read WHERE mem_num=#{user_mem_num} GROUP BY chatroom_num, mem_num) e USING(chatroom_num)
+	            LEFT OUTER JOIN (SELECT * FROM chat WHERE chat_num IN (SELECT MAX(chat_num) chat_num FROM chat GROUP BY chatroom_num))
+	            USING(chatroom_num) WHERE seller_num=#{seller_num} OR buyer_num=#{buyer_num} ORDER BY chatroom_num DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 채팅방 나가기
+	<update id="deleteChatRoomMember" parameterType="chatroomVO">
+		UPDATE chatroom
+				SET seller_num = CASE 
+		                            WHEN chatroom_num = #{chatroom_num} AND seller_num = #{user_mem_num}
+		                            THEN 0 
+		                            ELSE seller_num 
+		                         END,
+					buyer_num = CASE 
+		                           WHEN chatroom_num = #{chatroom_num} AND buyer_num = #{user_mem_num}
+		                           THEN 0
+		                           ELSE buyer_num 
+		                        END
+		WHERE chatroom_num = #{chatroom_num} 
+		  AND (seller_num = #{user_mem_num} OR buyer_num = #{user_mem_num})
+	</update>
+	-->
+</mapper>

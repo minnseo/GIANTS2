@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+th{
+	background-color: #f5f5f5;
+}
+.option-tr{
+background-color: #f5f5f5;
+}
+
+
+.arrow-icon {
+    display: inline-block;
+    margin-right: 5px; /* 조정 가능한 여백 */
+    padding: 2px; /* 텍스트와 border 간의 여백 */
+}
+
+.option-icon{
+ margin-right: 300px;
+ text-align: center;
+}
+
+.content-main {
+	background-color: #ffffff; /* 배경색 */
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+	padding: 20px;
+	padding-top: 10px;
+}
+h2 {
+	margin-top: 0;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+th, td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+.align-center {
+	text-align: center;
+}
+input[type="submit"], input[type="button"] {
+    padding: 8px 16px;
+    background-color: #052345;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #052345;
+}
+.result-display {
+	margin-bottom: 20px;
+	text-align: center;
+	font-style: italic;
+}
+.cart-modify, .cart-del {
+	padding: 5px 10px;
+	border: none;
+	background-color:#dd032f;
+	color: white;
+	cursor: pointer;
+}
+.cart-modify:hover, .cart-del:hover {
+	background-color: #35c5f0;
+}
+.cart-submit {
+	margin-top: 20px;
+}
+.header h1 {
+	margin: 0;
+}
+.content {
+	background-color: #052345;
+	padding: 20px;
+}
+
+.goods-link {
+	color: #052345;
+	text-decoration: none;
+}
+.goods-photo {
+	width: 80px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+#order-btn{
+	background-color: #dd032f;
+}

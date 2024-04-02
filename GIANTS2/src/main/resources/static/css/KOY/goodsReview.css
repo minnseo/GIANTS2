@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/* 공통 버튼
+----------------*/
+input[type="button"], button[type="submit"]{
+	width:60px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+}
+.error-color{
+	color:red;
+}
+
+/* 별점 표시
+------------------*/
+#review_register fieldset,
+#review_modify fieldset{
+    display: inline-block;
+    direction:rtl;
+    border:0;
+}
+
+#review_register fieldset legend,
+#review_modify fieldset legend{
+    text-align: right;
+}
+
+#review_register input[type=radio],
+#review_modify input[type=radio]{
+    display: none;
+}
+#review_register label.review-star,
+#review_modify label.review-star{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    margin:0 auto;
+    width:100px;
+}
+#review_register label.review-star:hover,
+#review_modify label.review-star:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#review_register label.review-star:hover ~ label.review-star,
+#review_modify label.review-star:hover ~ label.review-star{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#review_register input[type=radio]:checked ~ label.review-star,
+#review_modify input[type=radio]:checked ~ label.review-star{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+/* 등록, 수정폼
+------------------*/
+form#review_register ul,
+form#review_modify ul{
+	margin-top:10px;
+}
+form#review_register ul li,
+form#review_modify ul i{
+	margin-top:3px;
+}
+form#review_register ul li select,
+form#review_modify ul li select{
+	height:30px;
+	width:50%;
+}
+form#review_register ul li label,
+form#review_modify ul li label{
+	margin:0 0 5px 10px;
+	display:inline-block;
+	font-size:14pt;
+	width:200px;
+}
+form#review_register ul li fieldset,
+form#review_modify ul li fieldset{
+	height:25px;
+}
+form#review_register input[type="text"],
+form#review_modify input[type="text"]{
+	width:50%;
+	height:25px;
+}
+form#review_register textarea{
+	width:50%;
+	height:100px;
+	margin-left:215px;
+}
+form#review_modify textarea{
+	width:50%;
+	height:100px;
+	margin-left:215px;
+}
+
+div.goods-title h2{
+	margin-bottom:7px;
+}
+
+
+
+

@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+/* --- 공통 메시지 및 버튼 --- */
+.result-display{
+	width: 400px;
+	height: 200px;
+	margin: 50px auto;
+	border: 1px solid #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	clear: both;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+hr{ 
+	margin:15px 0; 
+}
+.error-color{
+	color: #ff0000;
+}
+
+.classic-btn, .red-btn{ 
+	width:110px; height:40px; border-radius:5px; color:white; font-weight:bold; cursor:pointer; 
+}
+.classic-btn:hover, .red-btn:hover{ 
+	background-color:transparent; transition:0.2s ease-out; 
+}
+.classic-btn{ 
+	border:1px #052345 solid; background-color:#052345; 
+}
+.classic-btn:hover{ 
+	color:#052345; 
+}
+.red-btn{ 
+	border:1px #dd032f solid; background-color:#dd032f;
+}
+.red-btn:hover{ 
+	color:#dd032f;
+}
+.small{ width:50px; height:25px; }
+.middle2{ width:50px; height:28px; }
+
+/* 검색 */
+ul.search{
+	float: left;
+}
+ul.search li{
+	display:inline;	
+}
+ul.search li select{
+	height:30px;
+	margin-top:10px;
+}
+#keyword{
+	height:30px;
+}
+form#search_form #order{
+	float: right;
+	height:32px;
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+
+/* --- 중고거래 게시판 글 목록 --- */
+ul.trading_search li{
+	float: left;
+}
+.trading_right{
+	margin-left: 680px;
+}
+
+table.striped-table{
+	border: 1px #FFF solid;
+	font-size: 15px;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 7px 0;
+}
+table.striped-table td, table.striped-table th{
+	padding: .7em .5em;
+	vertical-align: middle;
+	text-align: center;
+}
+table.striped-table th{
+	font-weight: bold;
+	background: #E1E1E1;
+}
+table.striped-table td{
+	border-bottom: 1px solid rgba(0,0,0,.1)
+}
+.d-flex {
+    margin-top: 20px;
+}
+.list-thumbnail{
+	width: 80px; 
+	height: 80px;
+}
+.list-photo{
+	width: 50px;
+}
+
+/* --- 중고거래 게시판 글 상세 --- */
+ul.detail-info{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul.detail-info li{
+	margin: 0;
+	padding-top: 5px;
+	display: inline-block;
+}
+ul.detail-info li:last-child{
+	vertical-align: top;
+}
+.detail-img{
+	max-width: 500px;
+}
+.detail-content img{
+	max-width: 940px;
+}
+#output_bookmark{
+	cursor: pointer;
+}
+.trading-body{
+	margin: 0 auto;
+	width: 1000px;
+}
+#trade_title{
+	margin-top: 25px;
+}
+.detail-content{
+	 height: 400px;
+}
+
+/* --- 중고거래 게시판 글 작성 --- */ 
+#price_form{
+	width: 70px;
+	height: 20px;
+	margin-bottom: 5px;
+}
+#trading_title{
+	width: 600px;
+	height: 20px;
+	margin-bottom: 5px;
+}
+#status{
+	margin-top: 10px;
+}
+
+/* --- 중고거래 관심목록 --- */ 
+.bookmark-top{
+    width:1000px;
+}
+.bookmark-top{
+	display: flex;
+    position: relative;
+    border-bottom: 1px solid #BBB;
+    padding: 25px 0;
+    height: 40px;
+    z-index: 19;
+    width:1000px;
+}
+.bookmark-top-title .h2{
+	display: inline-block;
+	font-size: 29px;
+	line-height: 30px;
+	padding-top: 10px;
+	background: url(../_Img/Common/ico_mtit.gif) no-repeat 0 0;
+	margin-right: 25px;
+}
+.bookmark-form {
+    width: 800px;
+    margin: 0 auto;
+}
+table.striped-table th {
+    color: black;
+}

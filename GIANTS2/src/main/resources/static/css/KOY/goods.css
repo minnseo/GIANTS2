@@ -1,0 +1,335 @@
+@charset "UTF-8";
+/* 공통 버튼
+----------------*/
+input[type="button"], input[type="submit"], button[type="submit"]{
+	width:60px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+}
+.error-color{
+	color:red;
+}
+
+/* 굿즈 등록, 수정
+----------------*/
+button[type="submit"].default-btn{
+	width:60px;
+	height:30px;
+	background-color:#FFF;
+	color:#dd032f;
+	border:1px solid #dd032f;
+	cursor:pointer;
+}
+
+button[type="submit"].default-btn:hover{
+	width:60px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	cursor:pointer;
+}
+form#register_form ul li label,
+form#update_form ul li label{
+	margin:0 0 5px 10px;
+	display:inline-block;
+	font-size:14pt;
+	width:200px;
+}
+form#register_form input[type="text"],
+form#update_form input[type="text"]{
+	width:50%;
+	height:25px;
+}
+form#register_form select,
+form#update_form select{
+	width:100px;
+	height:25px;
+}
+form#register_form input[type="number"],
+form#update_form input[type="number"]{
+	width:130px;
+	height:25px;
+}
+form#register_form span.radio-status,
+form#update_form span.radio-status{
+	margin:0 10px;
+	height:30px;
+}
+div#file_detail span{
+	margin:0 0 20px 10px;
+}
+
+/* [일반회원] 굿즈 목록
+----------------------*/
+div.goods-title h2{
+	margin-bottom:7px;
+}
+ul.filter-btns li div{
+	width:auto;
+}
+div#cate-filter{
+	width:450px;
+	margin-bottom:7px;
+	margin-top:7px;
+}
+div#cate-filter button[type="button"].off{
+	width:80px;
+	height:30px;
+	background-color:#6cace4;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+	font-weight:bold;
+	text-align:center;
+}
+
+div#cate-filter button[type="button"].off:hover,
+div#cate-filter button[type="button"].on{
+	width:80px;
+	height:30px;
+	background-color:#FFF;
+	color:#6cace4;
+	border:1px solid #6cace4;
+	cursor:pointer;
+	font-weight:bold;
+	text-align:center;
+}
+
+div#list-btns{
+	width:450px;
+	margin:0;
+	float:right;
+}
+ul.search{
+	float:right;
+}
+ul.search li{
+	display:inline;	
+}
+ul.search li select{
+	height:30px;
+	margin-top:10px;
+}
+#keyword{
+	height:30px;
+}
+form#search_form #order{
+	height:32px;
+	margin-top:10px;
+}
+.goods-space .horizontal-area{
+	margin:2px;
+	padding:3px;
+	width:24%;
+	height:360px;
+	float:left;
+	text-align:center;
+	overflow:hidden;
+}
+.goods-space .horizontal-area img{
+	width:100%;
+	height:300px;
+}
+.goods-space .float-clear{
+	clear:both;
+}
+input[type="button"]#admin_btn{
+	width:80px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+}
+input.list-btn{
+	width:110px;
+	height:30px;
+	background:none;
+	color:#052345;
+	font-weight:bold;
+	border:none;
+	cursor:pointer;
+}
+input.list-btn:hover{
+	width:110px;
+	height:30px;
+	background-color:#052345;
+	color:#fff;
+	font-weight:bold;
+	border:none;
+	cursor:pointer;
+}
+
+/* [관리자] 굿즈 목록
+----------------------*/
+div.goods-list table{
+	margin:50px 0 0 0;
+	padding:0;
+	width:100%;
+}
+div.goods-list table,
+div.goods-list table th,
+div.goods-list table td{
+	border:1px solid #ccc;
+	border-collapse : collapse;
+	text-align:center;
+	font-size:11pt;
+}
+div.goods-list table tr{
+	height:30px;
+}
+div.goods-list table tr:first-child{
+	background-color:#d9d9d9;
+	color:#052345;
+	border-top:2px solid #dd032f;
+}
+
+/* 상품문의 - 글 상세
+------------------*/
+.detail-content{
+	min-height:100px;
+	margin-top:5px;
+}
+
+/* 문의답변 폼
+------------------*/
+div#answer_div{
+	padding:5px 10px 40px 10px;
+	margin-top:10px;
+	background-color:#EEEEEE;
+}
+form#gans_form,
+form#mans_form{
+	width:1150px;
+	margin:0;
+}
+textarea.rep-content{
+	width:90%;
+	height:50px;
+	margin:10px 10px;
+}
+div#ans_first, div#mans_first{
+	float:right;
+	width:50px;
+/* 	width:10%;
+	padding-left:15px;
+	margin-bottom:10px; */
+}
+div#ans_second, div#mans_second{
+	float:right;
+	width:135px;
+	margin-bottom:10px;
+}
+
+div#loading{
+	width:100px;
+	height:50px;
+	/*정중앙에 div를 배치하기 위한 설정*/
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	/*하위 요소를 수직으로 쌓을 수 있는 공간을 만듦*/
+	display:flex;
+	/*세로 정렬*/
+	align-items:center;
+	/*가로 정렬*/
+	justify-content:center;
+}
+div.paging-button{
+	text-align:right;
+}
+div#output{
+	clear:both;
+}
+form#mans_form{
+	border:none;
+	margin:5px;
+}
+
+/* 문의글 UI
+------------------*/
+table.top-part{
+	margin:0;
+	padding:0;
+}
+table.top-part,
+table.top-part td,
+table.top-part th{
+	border:1px solid #ccc;
+	border-collapse : collapse;
+	text-align:center;
+	font-size:11pt;
+}
+table.top-part{
+	margin:5px 0 10px 0;
+	padding:0;
+	width:100%;
+	height:100px;
+}
+table.top-part th{
+	background-color:rgb(230, 230, 230);
+}
+
+/* 문의답변 UI
+------------------*/
+.item{
+	min-height:100px;
+}
+div#output{
+	clear:both;
+}
+.sub-item p{
+	margin-top:5px;
+	min-height:30px;
+}
+div.ans-btns{
+	margin-bottom:3px;
+	display:block;
+}
+form#mans_form{
+	border:none;
+	margin:5px;
+}
+div#mans_second{
+	display:inline-block;
+}
+ul.detail-info{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul.detail-info li{
+	margin:0;
+	padding-top:5px;
+	display:inline-block;
+}
+ul.detail-info li:last-child{
+	vertical-align:top;
+}
+
+/* 문의 등록
+------------------*/
+form#qna_register ul li label,
+form#qna_modify ul li label{
+	margin:0 0 5px 10px;
+	display:inline-block;
+	font-size:14pt;
+	width:200px;
+}
+form#qna_register input[type="text"],
+form#qna_modify input[type="text"]{
+	width:50%;
+	height:25px;
+}
+form#qna_register textarea,
+form#qna_modify textarea{
+	width:50%;
+	height:100px;
+}
+
+
+

@@ -1,0 +1,480 @@
+/* 에러 컬러 */
+.error-color{
+	color:#ff0000;
+}
+.mypage-top{
+	display: flex;
+    position: relative;
+    border-bottom: 1px solid #BBB;
+    padding: 25px 0;
+    height: 40px;
+    z-index: 19;
+    margin:0 auto 30px auto;
+    width:1200px;
+}
+.mypage-top2{
+	display: flex;
+    position: relative;
+    border-bottom: 1px solid #BBB;
+    padding: 25px 0;
+    height: 40px;
+    z-index: 19;
+    margin:0 auto 30px auto;
+    width:1000px;
+}
+.mypage-top-title .h2{
+	display: inline-block;
+	font-size: 29px;
+	line-height: 30px;
+	padding-top: 10px;
+	background: url(../_Img/Common/ico_mtit.gif) no-repeat 0 0;
+	margin-right: 25px;
+}
+.mypage-top-title .p{
+	display: inline-block;
+	font-size: 13px;
+}
+
+#mypage_body{
+	margin:0 auto;
+	width:1213px;
+	min-height:1000px;
+}
+#mypage_body .mypage-nav{
+    background-color: #dd032f;
+	color:#fff;
+	font-size:15pt;
+	width:150px;
+	float:left;
+	text-align:center;
+}
+
+#mypage_body .mypage-nav a{
+	text-align:center;
+    background-color: rgba(5,35,69,1);
+	color:#d4d4d4;
+	font-size:10pt;
+	width:150px;
+	float:left;
+	padding-bottom:10px;
+}
+
+#mypage_body .mypage-body{
+	width:1000px;
+	float:right;
+}
+/* 로그인창 
+=================*/
+/* 아이디 비밀번호 */
+.login-main{
+	margin-bottom: 20px;
+    border: 5px solid #dfdfdf;
+    padding: 30px 50px;
+    position: relative;
+    overflow: hidden;
+    width:1000px;
+    margin:0 auto;
+}
+.login-form{
+	background: url(../_Img/members/login_form_bg.png) no-repeat 0 0;
+    padding-top: 10px;
+    width: 550px;
+    float: left;
+    position: relative;
+    margin: auto;
+}
+.login-form img{
+	float:left;
+}
+.login-form li{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.login-form input,
+.login-form password{
+	float:right;
+	margin:0 260px 0 0;
+	width:180px;
+	height:20px;
+}
+.login-form #auto{
+	width:80px;
+	margin: 0 392px 0 0;
+}
+.login-form p{
+	padding:15px 0 0 90px;
+}
+.login{
+    margin: 30px 0 0 7px;
+    position: relative;	
+}
+.login-btn{
+	position: absolute;
+    top: 0;
+    right: 60px;
+    border: 1px #dd032f solid;
+    background-color: #dd032f;
+    color:#FFF;
+    width:150px;
+    height:70px;    
+}
+/* 회원가입 아이디 비밀번호찾기 */
+.login-sub{
+    float: right;
+    border-left: 1px solid #ddd;
+    padding: 10px 135px 10px 40px;
+    width: 270px;
+}
+.login-sub li{
+	margin-bottom:15px;
+}
+.login-sub-btn{
+	margin-top:10px;
+	margin-right:5px;
+}
+/* 회원등급
+=================*/
+.common-register,
+.member-mypage,
+.company-mypage{
+	margin-bottom: 20px;
+    border: 5px solid #dfdfdf;
+    padding: 30px 50px;
+    position: relative;
+    overflow: hidden;
+    width:1000px;
+    margin:0 auto;
+}
+.member-mypage,
+.company-mypage{
+	width:800px;
+}
+.common-register ul li button{
+	list-style:none;
+	float:left;
+}
+/* 회원등급 : 일반회원 */
+.common-register .m-register{
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color: white;
+	width:250px;
+	height:150px;
+	font-size:20px;
+	border:none;
+	border-radius: 20px;
+	margin:0 125px 0 125px;
+}
+/* 회원등급 : 기업회원 */
+.common-register .c-register{
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color: white;
+	width:250px;
+	height:150px;
+	font-size:20px;
+	border:none;
+	border-radius: 20px;
+	margin:0 125px 0 125px;
+}
+/* 회원가입
+=================*/
+.register-box{
+	width:500px;
+	margin:0 auto;
+}
+.register-box li{
+	text-align:left;
+	padding-bottom:20px;
+	margin:0 auto;
+}
+#member_register label,
+#company_register label,
+#member_modify label,
+#company_modify label,
+#member_delete label,
+#company_delete label{
+	display:inline-block;
+	padding-right:10px;
+	font-size:1.2em;
+	width:110px;
+	text-align: left;
+}
+#member_change label,
+#member_findId label,
+#member_findIdCp label,
+#member_findPw label{
+	display:inline-block;
+	padding-right:10px;
+	font-size:1.2em;
+	width:130px;
+	text-align: left;	
+}
+#member_register input[id="memberDetailVO.mem_name"],
+#member_register input[id="mem_id"],
+#member_register input[id="memberDetailVO.mem_email"],
+#member_register input[id="memberDetailVO.mem_zipcode"],
+#member_register input[id="passwd"],
+#member_register input[id="memberDetailVO.mem_public"],
+#member_register input[id="memberDetailVO.mem_phone"],
+#member_register input[id="memberDetailVO.mem_address1"],
+#member_register input[id="memberDetailVO.mem_address2"],
+#member_register input[id="mem_nickname"],
+#company_register input[id="companyDetailVO.comp_owner"],
+#company_register input[id="companyDetailVO.comp_num"],
+#company_register input[id="companyDetailVO.comp_name"],
+#company_register input[id="companyDetailVO.comp_cate"],
+#company_register input[id="mem_id"],
+#company_register input[id="companyDetailVO.comp_email"],
+#company_register input[id="companyDetailVO.comp_zipcode"],
+#company_register input[id="passwd"],
+#company_register input[id="companyDetailVO.comp_phone"],
+#company_register input[id="companyDetailVO.comp_address1"],
+#company_register input[id="companyDetailVO.comp_address2"],
+#company_register input[id="companyDetailVO.comp_content"],
+#member_modify input[id="memberDetailVO.mem_name"],
+#member_modify input[id="memberDetailVO.mem_public"],
+#member_modify input[id="memberDetailVO.mem_phone"],
+#member_modify input[id="memberDetailVO.mem_email"],
+#member_modify input[id="memberDetailVO.mem_zipcode"],
+#member_modify input[id="memberDetailVO.mem_address1"],
+#member_modify input[id="memberDetailVO.mem_address2"],
+#member_modify input[id="mem_nickname"],
+#company_modify input[id="companyDetailVO.comp_owner"],
+#company_modify input[id="companyDetailVO.comp_name"],
+#company_modify input[id="companyDetailVO.comp_cate"],
+#company_modify input[id="companyDetailVO.comp_phone"],
+#company_modify input[id="companyDetailVO.comp_email"],
+#company_modify input[id="companyDetailVO.comp_zipcode"],
+#company_modify input[id="companyDetailVO.comp_address1"],
+#company_modify input[id="companyDetailVO.comp_address2"],
+#company_modify input[id="companyDetailVO.comp_content"],
+#member_change input[id="now_passwd"],
+#member_change input[id="passwd"],
+#member_change input[id="confirm_passwd"],
+#member_delete input[id="mem_id"],
+#member_delete input[id="passwd"],
+#company_delete input[id="mem_id"],
+#company_delete input[id="passwd"],
+#member_findId input[id="mem_name"],
+#member_findId input[id="mem_phone"],
+#member_findIdCp input[id="comp_owner"],
+#member_findIdCp input[id="comp_phone"]{
+	width:264px;
+	height:35px;
+	text-align: left;
+}
+/* ID중복체크, 이메일인증, 우편번호 */
+#member_register .default-btn,
+#company_register .default-btn,
+#member_modify .default-btn,
+#company_modify .default-btn,
+#member_change .default-btn{
+	width:100px;
+	height:35px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+}
+/* 전송, 홈으로 */
+.bottom-btn{
+	margin:20px 10px 0 0;
+	width:60px;
+	height:35px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+}
+/* 마이페이지
+=================*/
+/* 마이페이지 */
+.mem-table td{
+	width:150px;
+	padding-bottom:10px;
+}
+
+/* 회원정보 수정*/
+.mypage-form{
+	margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    width:1000px;
+}
+.mypage-form li{
+	padding-bottom:10px;
+	width:500px;
+	margin:0 auto;
+}
+.mypage-form #member_change ul{
+	padding-bottom:20px;
+}
+.mypage-form #member_change li{
+	padding-bottom:10px;
+	width:520px;
+	margin:0 auto;
+}
+.mypage-bottom{
+	text-align:center;
+	margin:0 auto;
+}
+.my-btn{
+	margin:20px 10px 0 0;
+	width:80px;
+	text-align:center;
+	margin:0 auto;
+	height:35px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+}
+/* 관리자 회원목록 검색창 */
+form#search_form{
+	width:100%;
+	padding-bottom:30px;
+	border:none;
+}
+ul.search{
+	width:450px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.good-search{
+	width:300px;
+	float:right;
+	margin:0 0 9px 0;
+	padding-left:10px;
+	display:inline;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding-left:10px;
+	display:inline;
+}
+ul.search li select{
+	border-radius: 5px;
+	height:33px;
+	border:1px solid black;
+}
+ul.search li input{
+	margin-top:4px;
+	border-radius: 5px;
+	padding:8px;
+	border:1px solid black;
+}
+.mypage-form .default-btn{
+	width:55px;
+	height:33px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+}
+.default-btn{
+	height:35px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;	
+}
+.default-btn2{
+	padding:0px 5px;
+	height:30px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;	
+}
+/* 관리자 회원목록 테이블 */
+.mypage-form #member_modify ul{
+	margin:0 auto;
+}
+table.striped-table{
+	border-collapse: collapse;
+	width:90%;
+	font-size:15px;
+	margin:0 auto;
+}
+table.striped-table2 {
+    border-collapse: collapse;
+    width: 90%;
+    font-size: 15px;
+    margin: 0 auto;
+}
+table.striped-table td, table.striped-table th {
+	padding:0.5em 0.4em;
+}
+table.striped-table th{
+	background-color:rgba(5,35,69,0.75);
+	color: #FFF;	
+}
+table.striped-table2 td, table.striped-table2 th {
+	padding:0.5em 0.4em;
+}
+table.striped-table2 th{
+	background-color:rgba(5,35,69,0.75);
+	color: #FFF;	
+}
+.admin-bot{
+	text-align:center;
+}
+.mypage-form .default-btn,
+.admin-bot .admin-bot-btn{
+	width:55px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+}
+.form-page{
+	text-align:center;
+	padding-top:30px;
+	padding-left:30px;
+}
+#member_modify li{
+	padding-bottom:10px;
+}
+/* 기업페이지 푸드목록 버튼 */
+.table-td-btn{
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+	width:40px;
+	height:30px;
+}
+.Mypage-p{
+	display:inline-block;
+	padding-left:50px;
+	width: 500px;
+}
+.Myfooddetail-table{
+	width:800px;
+}
+.back-btn{
+	width:100px;
+	height:35px;
+	border-radius: 5px;
+	border: 1px #dd032f solid;
+    background-color: #dd032f;
+	color:#fff;
+}
+.mypage-r{
+	padding-left:890px;
+	padding-bottom:5px;
+}
+#fix_compMenu div.float-right{
+	margin-right: 50px;
+}
+
+.foodModify-btn{
+	background-color: #dd032f;
+    color: #FFF;
+    font-weight: bold;
+    border: 1px solid #dd032f;
+    border-radius: 3px;
+    padding: 5px;
+    margin-bottom: 5px;
+}

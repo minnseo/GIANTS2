@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 커뮤니티 게시판 폼 -->
+	<definition name="commuList" extends="main">
+		<put-attribute name="title" value="커뮤니티 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/commu/commuList.jsp"/>
+	</definition> 
+	
+	<!-- 글 등록 폼 -->
+    <definition name="commuWrite" extends="main">
+    	<put-attribute name="title" value="글쓰기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuWrite.jsp"/>
+    </definition> 
+    
+    <!-- 야구장 소개 폼 -->
+    <definition name="stadium" extends="main">
+    	<put-attribute name="title" value="구장소개"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/stadium.jsp"/>
+    </definition> 
+    
+    <!-- 야구장 오시는길 폼 -->
+    <definition name="map" extends="main">
+    	<put-attribute name="title" value="구장소개"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/map.jsp"/>
+    </definition> 
+    
+    <!-- 야구장 먹거리 폼 -->
+    <definition name="food" extends="main">
+    	<put-attribute name="title" value="구장소개"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/food.jsp"/>
+    </definition> 
+    
+    <!-- 글 상세 -->
+    <definition name="commuView" extends="main">
+    	<put-attribute name="title" value="상세정보"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuView.jsp"/>
+    </definition>
+    
+    <!-- 글 수정 폼 -->
+    <definition name="commuModify" extends="main">
+    	<put-attribute name="title" value="글 수정"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuModify.jsp"/>
+    </definition>
+    
+    <!-- 커뮤니티 신고 폼 -->
+    <definition name="commuRepo" extends="main">
+    	<put-attribute name="title" value="커뮤니티 글 신고"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuRepo.jsp"/>
+    </definition>
+    
+    <!-- 선수 소개 폼 (감독) -->
+    <definition name="player" extends="main">
+    	<put-attribute name="title" value="선수 소개"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/player.jsp"/>
+    </definition>
+    
+    <!-- 선수 등록 폼 -->
+    <definition name="admin_player" extends="main">
+    	<put-attribute name="title" value="선수 등록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/admin_player.jsp"/>
+    </definition>
+    
+    
+    <!-- [관리자] 선수 목록 폼 
+    <definition name="admin_playerList" extends="main">
+    	<put-attribute name="title" value="선수 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/admin_playerList.jsp"/>
+    </definition>
+    -->
+    
+     <!-- [선수 소개] 코치 폼 -->
+    <definition name="playerList_c" extends="main">
+    	<put-attribute name="title" value="선수 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/playerList_c.jsp"/>
+    </definition>
+    
+    <!-- [선수 소개] 투수 폼 -->
+    <definition name="playerList_t" extends="main">
+    	<put-attribute name="title" value="선수 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/playerList_t.jsp"/>
+    </definition>
+    
+     <!-- [선수 소개] 포수 폼 -->
+    <definition name="playerList_p" extends="main">
+    	<put-attribute name="title" value="선수 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/playerList_p.jsp"/>
+    </definition>
+    
+    <!-- [선수 소개] 외야수 폼 -->
+    <definition name="playerList_w" extends="main">
+    	<put-attribute name="title" value="선수 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/playerList_w.jsp"/>
+    </definition>
+    
+    <!-- [선수 소개] 내야수 폼 --> 
+    <definition name="playerList_n" extends="main">
+    	<put-attribute name="title" value="선수 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/playerList_n.jsp"/>
+    </definition>
+    
+    <!-- [관리자] 신고 목록 -->
+    <definition name="commuRepoList" extends="main">
+    	<put-attribute name="title" value="신고 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/commu/commuRepoList.jsp"/>
+    </definition>
+    
+    <!-- [관리자] 선수 정보 수정 폼 -->
+    <definition name="admin_playerModify" extends="main">
+    	<put-attribute name="title" value="신고 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/introduce/admin_playerModify.jsp"/>
+    </definition>
+    
+</tiles-definitions>

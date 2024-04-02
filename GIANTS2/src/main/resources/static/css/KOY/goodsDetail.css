@@ -1,0 +1,254 @@
+@charset "UTF-8";
+/* 공통 버튼
+----------------*/
+input[type="button"], input[type="submit"], button[type="submit"]:not(.not-css){
+	width:60px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+}
+.error-color{
+	color:red;
+}
+
+/* 굿즈 상세페이지
+----------------*/
+div.goods-title h2{
+	margin-bottom:7px;
+}
+input[type="button"]#admin_btn{
+	width:80px;
+	height:30px;
+	background-color:#dd032f;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+}
+.goods-photo{
+	width:40%;
+	margin:0;
+	float:left;
+	height:500px;
+}
+.goods-photo img{
+	width:400px;
+	height:400px;
+}
+.goods-info{
+	float:right;
+	width:60%;
+	height:500px;
+	margin:0;
+}
+.goods-name{
+	margin:0 0 10px 0;
+	padding:0;
+	color:#5e5e5e;
+}
+.goods-info li:not(span){
+	padding:0 0 5px 0;
+	font-size:20px;
+}
+#optionSelect, #order_quantity{
+	height:23px;
+}
+.goods-info .goods-name{
+	font-size:22pt;
+}
+.goods-info form{
+	border:none;
+	width:700px;
+	float:left;
+	margin:0;
+}
+form#goods_cart{
+	padding:10px;
+}
+.goods-btns{
+	cursor:pointer;
+	display:flex;
+	justify-content:space-between;
+}
+.goods-btns div{
+	margin:5px;
+	width:220px;
+	/* height:67.8px; */
+	border:1px solid #000;
+	display:inline-block;
+	text-align:center;
+	line-height:67.8px;
+	font-size:17px;
+}
+img#fav_btn, img#cart_btn, img#pay_btn{
+	width:21.6px;
+	margin:0;
+}
+span#output_fcount{
+	color:#6cace4;
+	font-weight:bold;
+}
+.not-css{
+	margin:0;
+	padding:0;
+	background-color:#FFF;
+	border:none;
+}
+div#goods_fav{
+	width:220px;
+	cursor:pointer;
+}
+div#goods_cart{
+	background-color:gray;
+	color:#FFF;
+	cursor:pointer;
+}
+div#goods_pay{
+	background-color:#000;
+	color:#FFF;
+	cursor:pointer;
+}
+.goods-subinfo, div#goods_delivery li{
+	padding:10px;
+	margin:0 5px;
+	width:100%;
+	font-size:17px;
+}
+figure.image{
+	text-align:center;
+}
+figure.image img{
+	width:500px;
+}
+div.medium-nav{
+	cursor:pointer;
+	width:100%;
+	display:inline-block;
+	text-align:center;
+}
+div.medium-nav ul li{
+	width:24%;
+	background-color:#FFF;
+	line-height:30px;
+	text-align:center;
+	display:inline-block;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+div.medium-nav ul li:first-child{
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
+	border-left:1px solid #ccc;
+}
+div.medium-nav ul li.selected{
+	border-top:1px solid #000;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+div.medium-nav a{
+	text-decoration:none;
+	display:block;
+	color:#000;
+}
+div.medium-nav ul li.selected a{
+	font-weight:bold;
+}
+h3.del-title{
+	font-size:20px;
+	margin:10px 20px;
+	padding:5px;
+}
+div.deli-sub{
+	width:50%;
+	min-height:300px;
+	float:left;
+}
+div#goods_delivery ul{
+	margin-left:50px;
+}
+div#goods_delivery ul li{
+	list-style-type:square;
+	margin:0;
+	padding:5px;
+}
+div#sold-out{
+	background-color:#000;
+	color:#FFF;
+	width:100%;
+	height:70px;
+	text-align:center;
+	font-size:27pt;
+}
+div#sold-out > span{
+	display:inline-block;
+}
+/* 후기, 문의
+------------------*/
+div#goods_review, div#goods_qna{
+	width:100%;
+	text-align:center;
+	/*max-height:1000px;*/
+	margin-bottom:20px;
+}
+div#review_output > span, div#goods_qna > span{
+	font-size:15pt;
+/* 	margin:50px; */
+	height:100%;
+}
+table.detail-tb{
+	width:1150px;
+	margin-left:25px;
+	margin-top:7px;
+}
+table.detail-tb,
+table.detail-tb td,
+table.detail-tb th{
+	border:1px solid #ccc;
+	border-collapse : collapse;
+	text-align:center;
+	font-size:11pt;
+}
+table.detail-tb th{
+	background-color:rgb(221, 221, 221);
+	color:#000;
+}
+table.detail-tb tr.re-content td.show-content div{
+	min-height:50px;
+}
+/* 리뷰, 문의 페이지 처리
+------------------------*/
+div#review_page, div#qna_page{
+	margin-top:5px;
+	display:inline-block;
+}
+div#review_page > li,
+div#qna_page > li{
+	float:left;
+	list-style:none;
+	cursor:pointer;
+	width:20px;
+}
+
+
+
+/* 평점표시
+------------------*/
+span#avg_star{
+    font-size: 2em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    margin:0 auto;
+    width:100px;
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+
+
+
+
+
+
+
