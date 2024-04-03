@@ -29,10 +29,4 @@ public interface ChatService {
 	public List<ChatRoomVO> selectChatRoomList(Map<String, Object> map);
 	public int selectRowCount(Map<String, Object> map);
 	
-	//채팅방 나가기
-	//public void deleteChatRoomMember(ChatRoomVO chatroomVO);
-	
-	//채팅 멤버 읽기
-	//public ChatRoomVO selectChatMember(Integer chatroom_num);
-	
 }

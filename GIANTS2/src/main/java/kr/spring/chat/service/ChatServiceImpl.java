@@ -81,27 +81,4 @@ public class ChatServiceImpl implements ChatService{
 		return chatMapper.selectRowCount(map);
 	}
 	
-	//채팅방 나가기
-	/*
-	@Override
-	public void deleteChatRoomMember(ChatRoomVO chatroomVO) {
-		chatMapper.deleteChatRoomMember(chatroomVO);
-
-		ChatRoomVO vo = chatMapper.selectChatMember(chatroomVO.getChatroom_num());
-		
-		if(vo.getSeller_num() == 0 && vo.getBuyer_num() == 0) {
-		   	//모든 멤버가 채팅방을 나갈 경우, 남아있는 채팅 내용을 모두 지우고 채팅방도 삭제
-			chatMapper.deleteChat(chatroomVO.getChatroom_num());
-			chatMapper.deleteChatRoom(chatroomVO.getChatroom_num());
-		}		
-
-	}
-	
-	/*
-	@Override
-	public ChatRoomVO selectChatMember(Integer chatroom_num) {
-		return chatMapper.selectChatMember(chatroom_num);
-	}
-	*/
-	
 }

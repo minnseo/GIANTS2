@@ -166,33 +166,5 @@ public class ChatController {
 		model.addAttribute("page", page.getPage());
 		return "chatList";
 	}
-	
-	/* =================
-	 * 채팅방 나가기
-	 * =============== */
-	/*
-	@RequestMapping("/chat/deleteChatRoomMemberAjax.do")
-	@ResponseBody
-	public Map<String,Object> memberDeleteAjax(ChatRoomVO chatroomVO, HttpSession session){
-		log.debug("<<chatroomVO : >>" + chatroomVO);
-		Map<String,Object> mapJson = new HashMap<String, Object>();
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		if(user == null) { //로그인이 되지 않은 경우
-			mapJson.put("result", "logout");
-		} else { //로그인이 된 경우
-			ChatRoomVO vo = chatService.selectChatMember(chatroomVO.getChatroom_num());
-			chatroomVO.setSeller_num(vo.getSeller_num());
-			chatroomVO.setBuyer_num(vo.getBuyer_num());
-			chatroomVO.setUser_mem_num(user.getMem_num());
-			log.debug("<<chatroomVO2 : >>" + chatroomVO);
-			
-			chatService.deleteChatRoomMember(chatroomVO);
-			
-			mapJson.put("result", "success");
-		}
-		
-		return mapJson;
-	}
-	*/
-	
+
 }

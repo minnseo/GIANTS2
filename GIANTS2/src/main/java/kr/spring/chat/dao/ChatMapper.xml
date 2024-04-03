@@ -64,22 +64,5 @@
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
 	</select>
-	
-	<!-- 채팅방 나가기
-	<update id="deleteChatRoomMember" parameterType="chatroomVO">
-		UPDATE chatroom
-				SET seller_num = CASE 
-		                            WHEN chatroom_num = #{chatroom_num} AND seller_num = #{user_mem_num}
-		                            THEN 0 
-		                            ELSE seller_num 
-		                         END,
-					buyer_num = CASE 
-		                           WHEN chatroom_num = #{chatroom_num} AND buyer_num = #{user_mem_num}
-		                           THEN 0
-		                           ELSE buyer_num 
-		                        END
-		WHERE chatroom_num = #{chatroom_num} 
-		  AND (seller_num = #{user_mem_num} OR buyer_num = #{user_mem_num})
-	</update>
-	-->
+
 </mapper>
